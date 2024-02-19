@@ -4,7 +4,7 @@ public class Cliente {
 
     private String cpfCliente;
 
-    private  String nomeCliente;
+    private String nomeCliente;
 
     private String emailCliente;
 

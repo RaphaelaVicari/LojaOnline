@@ -13,6 +13,7 @@ import java.util.Objects;
 
 public class ClienteRepository {
 
+    private static final String CLIENTES_JSON = "./clientes.json";
     private List<Cliente> clienteList;
 
     private RepositoryUtil utilidades;
@@ -23,7 +24,7 @@ public class ClienteRepository {
         utilidades = new RepositoryUtil();
         mapeador = new ObjectMapper();
         try {
-            byte[] dados = utilidades.lerArquivo("./clientes.json");
+            byte[] dados = utilidades.lerArquivo(CLIENTES_JSON);
             clienteList = mapeador.readValue(dados, new TypeReference<>() {
             });
         } catch (IOException e) {
@@ -36,7 +37,7 @@ public class ClienteRepository {
         clienteList.add(registroNovoCliente);
         try {
             String saida = mapeador.writeValueAsString(clienteList);
-            utilidades.persistirArquivo("./clientes.json", saida);
+            utilidades.persistirArquivo(CLIENTES_JSON, saida);
         } catch (IOException e) {
             e.printStackTrace();
             return null;

@@ -1,6 +1,5 @@
 package org.example.repository;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.Cliente;
@@ -9,7 +8,6 @@ import org.example.util.RepositoryUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class ClienteRepository {
 
@@ -45,7 +43,7 @@ public class ClienteRepository {
         return registroNovoCliente;
     }
 
-    public Cliente consultarCliente(String cpfCliente){
+    public Cliente consultarClientePorCpf(String cpfCliente){
 
         for(Cliente dados : clienteList){
             if (dados.getCpfCliente().equalsIgnoreCase(cpfCliente)){

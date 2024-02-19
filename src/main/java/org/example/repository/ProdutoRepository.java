@@ -2,7 +2,6 @@ package org.example.repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.model.Cliente;
 import org.example.model.Produto;
 import org.example.util.RepositoryUtil;
 
@@ -41,16 +40,6 @@ public class ProdutoRepository {
             return null;
         }
         return registroNovoProduto;
-    }
-
-    public List<Produto> consultarProduto(String nomeProduto){
-        List<Produto> produtosEncontrados = new ArrayList<>();
-        for(Produto dados : produtoList){
-            if (dados.getNomeProduto().toLowerCase().startsWith(nomeProduto.toLowerCase())){
-                produtosEncontrados.add(dados);
-            }
-        }
-        return produtosEncontrados;
     }
 
     public List<Produto> todosProdutos(){

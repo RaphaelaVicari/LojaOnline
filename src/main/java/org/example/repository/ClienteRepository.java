@@ -14,6 +14,7 @@ import java.util.Objects;
 public class ClienteRepository {
 
     private List<Cliente> clienteList;
+
     private RepositoryUtil utilidades;
 
     private ObjectMapper mapeador;
@@ -43,4 +44,13 @@ public class ClienteRepository {
         return registroNovoCliente;
     }
 
+    public Cliente consultarCliente(String cpfCliente){
+
+        for(Cliente dados : clienteList){
+            if (dados.getCpfCliente().equalsIgnoreCase(cpfCliente)){
+                return dados;
+            }
+        }
+        return null;
+    }
 }

@@ -17,7 +17,7 @@ public class Main {
         cliente.setEnderecoCliente("Rua Teste 123");
         cliente.setCpfCliente("999.999.999-99");
         cliente.setSenhaCliente("senha@senha");
-        cliente.setNumeroCelularCliente("912121212");
+        cliente.setNumeroCelularCliente("921212121");
 
         ClienteRepository clienteRepository = new ClienteRepository();
         clienteRepository.cadastrarCliente(cliente);

@@ -1,6 +1,10 @@
 package org.example;
 import org.example.model.Cliente;
+import org.example.model.Produto;
+import org.example.model.Venda;
 import org.example.repository.ClienteRepository;
+import org.example.repository.ProdutoRepository;
+import org.example.repository.VendaRepository;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -10,7 +14,6 @@ public class Main {
     public static void main(String[] args) {
 
         Cliente cliente = new Cliente();
-
         cliente.setNomeCliente("Raphaela");
         cliente.setEmailCliente("raphaela@gmail.com");
         cliente.setDataNascimentoCliente("08/08/1997");
@@ -21,6 +24,31 @@ public class Main {
 
         ClienteRepository clienteRepository = new ClienteRepository();
         clienteRepository.cadastrarCliente(cliente);
+
+        Produto produto = new Produto();
+        produto.setDescricaoProduto("Uva Verde Sem Caraço");
+        produto.setEstoqueProduto(10);
+        produto.setPrecoProduto(9.99);
+        produto.setNomeProduto("Uva Verde");
+
+        ProdutoRepository produtoRepository = new ProdutoRepository();
+        produtoRepository.cadastrarProduto(produto);
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Digite a quantidade de uvas que deseja");
+        int qtd = s.nextInt();
+
+        Venda venda = new Venda(cliente);
+
+        for(int i = 0; i < qtd; i ++){
+            venda.adicionarProduto(produto);
+        }
+
+        VendaRepository vendaRepository = new VendaRepository();
+        vendaRepository.cadastrarVenda(venda);
+
+        System.out.println(vendaRepository.todasVendas());
 
     }
 }

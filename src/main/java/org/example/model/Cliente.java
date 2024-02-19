@@ -16,6 +16,16 @@ public class Cliente {
 
     private String enderecoCliente;
 
+    private double saldo;
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
     public String getCpfCliente() {
         return cpfCliente;
     }

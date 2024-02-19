@@ -2,13 +2,7 @@ package org.example.model;
 
 public class VendaProduto {
 
-    public VendaProduto(String nomeProduto, String descricaoProduto, double precoProduto) {
-        this.nomeProduto = nomeProduto;
-        this.descricaoProduto = descricaoProduto;
-        this.precoProduto = precoProduto;
-    }
-
-    public VendaProduto() {
+    public VendaProduto(){
 
     }
 
@@ -17,7 +11,6 @@ public class VendaProduto {
         setDescricaoProduto(produto.getDescricaoProduto());
         setPrecoProduto(produto.getPrecoProduto());
     }
-
 
     private String nomeProduto;
 
@@ -47,5 +40,14 @@ public class VendaProduto {
 
     public void setPrecoProduto(double precoProduto) {
         this.precoProduto = precoProduto;
+    }
+
+    @Override
+    public String toString() {
+        return "VendaProduto{" +
+                "nomeProduto='" + nomeProduto + '\'' +
+                ", descricaoProduto='" + descricaoProduto + '\'' +
+                ", precoProduto=" + precoProduto +
+                '}';
     }
 }

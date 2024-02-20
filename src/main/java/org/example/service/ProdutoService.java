@@ -16,6 +16,11 @@ public class ProdutoService {
 
     //TODO implementar regras de negócio dentro desse método após validaçoes do produto persistir ele com o repository
     public Produto cadastrarProduto(Produto produto) {
+        System.out.println("Hello World");
+        System.out.println("Hello World");
+        System.out.println("Hello World");
+        System.out.println("Hello World");
+        System.out.println("Hello World");
         return null;
     }
 

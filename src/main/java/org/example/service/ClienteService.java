@@ -114,20 +114,25 @@ public class ClienteService {
       }
 
     }
- public void bCrypt(String senha)
- {
 
-     //senha que sera encriptada
-     String hashSenha = BCrypt.hashpw(senha, BCrypt.gensalt());
+    private String hashSenha;
 
-     //forma de verificar a senha
-     String senhaInserida = "";
-     if (BCrypt.checkpw(senhaInserida, hashSenha)) {
-         System.out.println("Senha correta!");
-     } else {
-         System.out.println("Senha incorreta!");
-     }
- }
+ public void encriptarSenha(String senha)
+     {
+
+         //senha que sera encriptada
+          hashSenha = BCrypt.hashpw(senha, BCrypt.gensalt());
+        }
+public void checkSenha(String senha)
+{
+    //forma de verificar a senha
+    String senhaInserida = senha;
+    if (BCrypt.checkpw(senhaInserida, hashSenha)) {
+        System.out.println("Senha correta!");
+    } else {
+        System.out.println("Senha incorreta!");
+    }
+}
 
 }
 

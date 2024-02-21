@@ -7,6 +7,8 @@ import org.example.model.Cliente;
 import org.example.repository.ClienteRepository;
 
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class ClienteService {
 	
 	private ClienteRepository clienteRepository;
@@ -101,7 +103,32 @@ public class ClienteService {
                 return null;
             }
         }
-    }	
+    }
+
+
+    public void clienteNovo (String cpfCliente)
+    {
+      if(clienteRepository.consultarClientePorCpf(cpfCliente) ==null)
+      {
+          clienteRepository.consultarClientePorCpf(cpfCliente).setSaldo(100);
+      }
+
+    }
+ public void bCrypt(String senha)
+ {
+
+     //senha que sera encriptada
+     String hashSenha = BCrypt.hashpw(senha, BCrypt.gensalt());
+
+     //forma de verificar a senha
+     String senhaInserida = "";
+     if (BCrypt.checkpw(senhaInserida, hashSenha)) {
+         System.out.println("Senha correta!");
+     } else {
+         System.out.println("Senha incorreta!");
+     }
+ }
+
 }
 
 

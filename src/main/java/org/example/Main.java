@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("hello world!");
+
         Cliente cliente = new Cliente();
         cliente.setNomeCliente("Raphaela");
         cliente.setEmailCliente("raphaela@gmail.com");

@@ -32,17 +32,24 @@ public class ProdutoRepository {
 
     public Produto cadastrarProduto(Produto registroNovoProduto) {
         produtoList.add(registroNovoProduto);
-        try {
-            String saida = mapeador.writeValueAsString(produtoList);
-            utilidades.persistirArquivo(PRODUTOS_JSON, saida);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (atualizarBaseDados()){
             return null;
         }
         return registroNovoProduto;
     }
 
-    public List<Produto> todosProdutos(){
+    public boolean atualizarBaseDados() {
+        try {
+            String saida = mapeador.writeValueAsString(produtoList);
+            utilidades.persistirArquivo(PRODUTOS_JSON, saida);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return true;
+        }
+        return false;
+    }
+
+    public List<Produto> todosProdutos() {
         return produtoList;
     }
 }

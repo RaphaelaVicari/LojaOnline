@@ -1,5 +1,9 @@
 package org.example.service;
 
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -96,9 +100,8 @@ public class ClienteService {
                 return C;
             }
         }
-
-
-        public static DefaultFormatterFactory getFormat() {
+                
+        public DefaultFormatterFactory getFormat(){
             try {
                 return new DefaultFormatterFactory(new MaskFormatter(Formato));
             } catch (Exception e) {
@@ -107,18 +110,27 @@ public class ClienteService {
         }
     }
 
-
     public Cliente clienteNovo(Cliente cliente) {
         cliente.setSaldo(100);
 
         cliente.setSenhaCliente( passwordSecurity.encriptarSenha(cliente.getSenhaCliente()));
         return clienteRepository.cadastrarCliente(cliente);
 
+    }    
+ 
+    public boolean validarEmail(String email) {
+        // Define a expressão regular para validar o formato do e-mail
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+        // Compila a expressão regular
+        Pattern pattern = Pattern.compile(regex);
+
+        // Cria um objeto Matcher para o e-mail fornecido
+        Matcher matcher = pattern.matcher(email);
+
+        // Verifica se o e-mail corresponde ao padrão definido
+        return matcher.matches();
     }
-
-
-
-
 }
 
 

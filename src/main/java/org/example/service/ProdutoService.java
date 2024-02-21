@@ -15,6 +15,7 @@ public class ProdutoService {
     }
 
     public Produto cadastrarProduto(Produto produto) {
+
         if (produto.getNomeProduto().trim().equals("")) {
             System.err.println("Erro! Não é possível cadastrar produtosem nome!");
             return null;
@@ -36,6 +37,7 @@ public class ProdutoService {
         }
 
         return produtoRepository.cadastrarProduto(produto);
+
     }
 
 

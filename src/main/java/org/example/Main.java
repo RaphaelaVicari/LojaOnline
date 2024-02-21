@@ -18,7 +18,7 @@ public class Main {
         cliente.setEmailCliente("raphaela@gmail.com");
         cliente.setDataNascimentoCliente("08/08/1997");
         cliente.setEnderecoCliente("Rua Teste 123");
-        cliente.setCpfCliente("999.999.999-99");
+        cliente.setCpfCliente("935.143.020-06");
         cliente.setSenhaCliente("senha@senha");
         cliente.setNumeroCelularCliente("921212121");
 

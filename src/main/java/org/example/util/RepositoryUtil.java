@@ -15,5 +15,4 @@ public class RepositoryUtil {
         byte[] valor = Files.readAllBytes(Paths.get(value));
         return valor;
     }
-
 }

@@ -50,6 +50,9 @@ public class Main {
                 System.out.println(Constantes.cadastroClienteData);
                 cliente.setDataNascimentoCliente(scanner.next());
 
+                System.out.println(Constantes.cadastroClienteEmail);
+                cliente.setEmailCliente(scanner.next());
+
                 System.out.println(Constantes.cadastroClienteCelular);
                 cliente.setNumeroCelularCliente(scanner.next());
 
@@ -61,6 +64,7 @@ public class Main {
 
                 System.out.println(Constantes.cadastroClienteSenhaConfirma);
                 String senhaConfirm = scanner.next();
+
                 clienteRepository.cadastroSenha(scanner, senha, senhaConfirm);
                 clienteRepository.clienteNovo(cliente);
 

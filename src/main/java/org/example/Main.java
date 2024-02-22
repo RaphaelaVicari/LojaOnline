@@ -14,6 +14,8 @@ public class Main {
         ProdutoService produtoService = new ProdutoService();
 
         ClienteService clienteRepository = new ClienteService();
+        boolean lojaRodando = true;
+        Cliente cliente = new Cliente();
 
         //        Cliente cliente = new Cliente();
         //        cliente.setNomeCliente("Marco");
@@ -27,49 +29,80 @@ public class Main {
         //
         //        clienteRepository.clienteNovo(cliente);
 
-        Constantes.ABERTURADALOJA();
+        while (lojaRodando) {
+            Constantes.ABERTURADALOJA();
 
-        int menuNum = scanner.nextInt();
+            int menuNum = scanner.nextInt();
 
-        switch (menuNum) {
+            switch (menuNum) {
+                //cadastro de cliente
+                case 1:
 
-            case 1:
-                Cliente cliente = new Cliente();
+                    boolean criandoConta = true;
+                    while (criandoConta) {
+                        System.out.println(Constantes.cadastroClienteNome);
+                        cliente.setNomeCliente(scanner.next());
 
-                System.out.println(Constantes.cadastroClienteNome);
-                cliente.setNomeCliente(scanner.next());
+                        System.out.println(Constantes.cadastroClienteCpf);
+                        cliente.setCpfCliente(scanner.next());
 
-                System.out.println(Constantes.cadastroClienteCpf);
-                cliente.setCpfCliente(scanner.next());
+                        System.out.println(Constantes.cadastroClienteData);
+                        cliente.setDataNascimentoCliente(scanner.next());
 
-                System.out.println(Constantes.cadastroClienteData);
-                cliente.setDataNascimentoCliente(scanner.next());
+                        System.out.println(Constantes.cadastroClienteEmail);
+                        cliente.setEmailCliente(scanner.next());
 
-                System.out.println(Constantes.cadastroClienteEmail);
-                cliente.setEmailCliente(scanner.next());
+                        System.out.println(Constantes.cadastroClienteCelular);
+                        cliente.setNumeroCelularCliente(scanner.next());
 
-                System.out.println(Constantes.cadastroClienteCelular);
-                cliente.setNumeroCelularCliente(scanner.next());
+                        System.out.println(Constantes.cadastroClienteEndereco);
+                        cliente.setEnderecoCliente(scanner.next());
 
-                System.out.println(Constantes.cadastroClienteEndereco);
-                cliente.setEnderecoCliente(scanner.next());
+                        System.out.println(Constantes.cadastroClienteSenha);
+                        String senha = scanner.next();
 
-                System.out.println(Constantes.cadastroClienteSenha);
-                String senha = scanner.next();
+                        System.out.println(Constantes.cadastroClienteSenhaConfirma);
+                        String senhaConfirm = scanner.next();
 
-                System.out.println(Constantes.cadastroClienteSenhaConfirma);
-                String senhaConfirm = scanner.next();
+                        clienteRepository.cadastroSenha(scanner, senha, senhaConfirm);
+                        clienteRepository.clienteNovo(cliente);
+                        criandoConta = false;
+                    }
 
-                clienteRepository.cadastroSenha(scanner, senha, senhaConfirm);
-                clienteRepository.clienteNovo(cliente);
+                    break;
 
-                break;
-            case 2:
-                produtoService.listarTodosProdutos();
-                break;
-            case 3:
-            case 4:
-            case 9:
+                //lista de produtos
+                case 2:
+                    produtoService.listarTodosProdutos();
+                    break;
+
+                    //cadastrar produto
+                case 3:
+                    //status da conta
+                case 4:
+
+                    System.out.println(Constantes.statusCliente);
+
+                    System.out.println(Constantes.statusClienteCpf);
+                    clienteRepository.cpfCheck(scanner, cliente, scanner.next());
+
+                    System.out.println(Constantes.statusClienteSenha);
+                    clienteRepository.checkSenha(scanner.next(), scanner);
+
+                    cliente.getNomeCliente();
+                    cliente.getEmailCliente();
+                    cliente.getDataNascimentoCliente();
+                    cliente.getNumeroCelularCliente();
+                    cliente.getSaldo();
+                    break;
+                //encerrar programa
+                case 9:
+                    lojaRodando = false;
+                    break;
+            }
+
+
+
 
 
         }

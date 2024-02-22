@@ -116,41 +116,41 @@ public class ClienteService {
 
     public Cliente clienteNovo(Cliente cliente) {
     	
-    	 if (!validarCPF(cliente.getCpfCliente())) {    		 
+    	 if (!validarCPF(cliente.getCpfCliente())) {
     		 System.err.println("CPF inválido! Não foi possível cadastrar o cliente.");
              return null;
          }
-    	 
+
     	 if (!validarEmail(cliente.getEmailCliente())) {
              System.err.println("E-mail inválido! Não foi possível cadastrar o cliente.");
              return null;
          }
-    	 
+
     	 if (!validarDataNascimento(cliente.getDataNascimentoCliente())) {
              System.err.println("Data de Nascimento inválido ou campo vazio! Não foi possível cadastrar o cliente.");
              return null;
          }
-    	 
+
     	 if (!validarNumeroCelular(cliente.getNumeroCelularCliente())) {
              System.err.println("Número de celular inválido ou campo vazio! Não foi possível cadastrar o cliente.");
              return null;
          }
-    	 
+
     	 if (cpfJaCadastrado(cliente.getCpfCliente())) {
              System.err.println("CPF já cadastrado! Não é possível cadastrar novamente.");
              return null;
          }
-    	 
+
     	 if (cliente.getNomeCliente().trim().equals("")){
              System.err.println("Não e possivel cadastrar com o campo nome vazio!");
              return null;
          }
-    	 
+
     	 if (cliente.getEnderecoCliente().trim().equals("")){
              System.err.println("Não e possivel cadastrar com o campo endereço vazio!");
              return null;
          }
-    	 
+
     	 if (cliente.getSenhaCliente().trim().equals("")){
              System.err.println("Não e possivel cadastrar com o campo senha vazio!");
              return null;
@@ -158,7 +158,7 @@ public class ClienteService {
     	 
         cliente.setSaldo(100);
 
-        cliente.setSenhaCliente( passwordSecurity.encriptarSenha(cliente.getSenhaCliente()));
+        cliente.setSenhaCliente(passwordSecurity.encriptarSenha(cliente.getSenhaCliente()));
         return clienteRepository.cadastrarCliente(cliente);
 
     }
@@ -172,10 +172,10 @@ public class ClienteService {
             senhaConfirm = scanner.next();
             return cadastroSenha(scanner, senha, senhaConfirm);
         }
-    } 
-    
+    }
+
     private boolean cpfJaCadastrado(String cpf) {
-    	
+
     	if(clienteRepository.consultarClientePorCpf(cpf) != null ) {
     		return true;
     	}
@@ -183,18 +183,36 @@ public class ClienteService {
     		return false;
     	}
     }
-    
+
     // Adicionar o método para validar CPF
     private boolean validarCPF(String cpf) {
         CPF cpfUtil = new CPF(cpf);
-        
-        if (!cpfUtil.isCPF()) {        	
+
+        if (!cpfUtil.isCPF()) {
             return false;
         }
 
         return true;
     }
-        
+
+    public boolean cpfCheck(Scanner scanner, Cliente cliente, String cpf) {
+
+        if (cpfJaCadastrado(cpf)) {
+            return true;
+        } else {
+
+            System.out.println("CPF não localizado\n Digite novamente");
+            cpf = scanner.next();
+            return cpfCheck(scanner, cliente, cpf);
+        }
+    }
+
+    public String checkSenha(String senha, Scanner scanner) {
+
+        return passwordSecurity.checkSenha(senha, scanner);
+
+    }
+
     public boolean validarEmail(String email) {
         // Define a expressão regular para validar o formato do e-mail
         String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
@@ -219,7 +237,7 @@ public class ClienteService {
 
         return matcher.matches();
     }
-    
+
     // Método para validar data de nascimento
     public boolean validarDataNascimento(String dataNascimento) {
         // Formato aceito: DD/MM/YYYY

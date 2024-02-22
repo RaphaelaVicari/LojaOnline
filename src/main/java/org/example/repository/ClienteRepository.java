@@ -57,4 +57,14 @@ public class ClienteRepository {
         }
         return null;
     }
+
+    public Cliente consultarClientePorSenha(String senha) {
+
+        for (Cliente dados : clienteList) {
+            if (dados.getSenhaCliente().equalsIgnoreCase(senha)) {
+                return dados;
+            }
+        }
+        return null;
+    }
 }

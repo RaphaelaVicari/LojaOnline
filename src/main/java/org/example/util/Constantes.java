@@ -21,9 +21,11 @@ public class Constantes {
 
     public static final String cadastroClienteSenhaConfirma = "Confirme sua senha";
 
-    public static final String StatusClienteCpf = "Digite o CPF";
+    public static final  String  statusCliente = "Preencha os campos abaixo para verificar o status da conta";
 
-    public static final String StatusClienteSenha = "Digite a Senha";
+    public static final String statusClienteCpf = "Digite o CPF";
+
+    public static final String statusClienteSenha = "Digite a Senha";
 
 
     public static void ABERTURADALOJA() {

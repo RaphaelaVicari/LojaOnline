@@ -5,6 +5,7 @@ import org.example.model.Venda;
 import org.example.repository.ClienteRepository;
 import org.example.repository.ProdutoRepository;
 import org.example.repository.VendaRepository;
+import org.example.service.ClienteService;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -14,41 +15,19 @@ public class Main {
     public static void main(String[] args) {
 
         Cliente cliente = new Cliente();
-        cliente.setNomeCliente("Raphaela");
-        cliente.setEmailCliente("raphaela@gmail.com");
+        cliente.setNomeCliente("Marco");
+        cliente.setEmailCliente("marco@gmail.com");
         cliente.setDataNascimentoCliente("08/08/1997");
         cliente.setEnderecoCliente("Rua Teste 123");
-        cliente.setCpfCliente("935.143.020-06");
+        cliente.setCpfCliente("839.149.310-51");
         cliente.setSenhaCliente("senha@senha");
         cliente.setNumeroCelularCliente("921212121");
+        cliente.setSenhaCliente("nome");
 
-        ClienteRepository clienteRepository = new ClienteRepository();
-        clienteRepository.cadastrarCliente(cliente);
+        ClienteService clienteRepository = new ClienteService();
+        clienteRepository.clienteNovo(cliente);
 
-        Produto produto = new Produto();
-        produto.setDescricaoProduto("Uva Verde Sem Caraço");
-        produto.setEstoqueProduto(10);
-        produto.setPrecoProduto(9.99);
-        produto.setNomeProduto("Uva Verde");
-
-        ProdutoRepository produtoRepository = new ProdutoRepository();
-        produtoRepository.cadastrarProduto(produto);
-
-        Scanner s = new Scanner(System.in);
-
-        System.out.println("Digite a quantidade de uvas que deseja");
-        int qtd = s.nextInt();
-
-        Venda venda = new Venda(cliente);
-
-        for(int i = 0; i < qtd; i ++){
-            venda.adicionarProduto(produto);
-        }
-
-        VendaRepository vendaRepository = new VendaRepository();
-        vendaRepository.cadastrarVenda(venda);
-
-        System.out.println(vendaRepository.todasVendas());
+       
 
     }
 }

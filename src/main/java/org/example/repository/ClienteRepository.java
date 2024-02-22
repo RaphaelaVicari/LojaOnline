@@ -20,42 +20,12 @@ public class ClienteRepository {
 
     private RepositoryUtil utilidades;
 
-    private ObjectMapper mapeador;
-    
-    private ClienteService clienteService;
-    
- // Adicionar o método para validar CPF
-    private boolean validarCPF(String cpf) {
-        CPF cpfUtil = new CPF(cpf);
-        
-        if (!cpfUtil.isCPF()) {        	
-            return false;
-        }
-
-        return true;
-    }
-    
-    private boolean validarEmail(String email) {
-
-        // Chama o método validarEmail da classe ClienteService
-        return clienteService.validarEmail(email);
-    }
-    
-    private boolean cpfJaCadastrado(String cpf) {
-        // Verificar se o CPF já está cadastrado na lista de clientes
-        for (Cliente dados : clienteList) {
-            if (dados.getCpfCliente().equalsIgnoreCase(cpf)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    private ObjectMapper mapeador;     
 
     public ClienteRepository() {
         utilidades = new RepositoryUtil();
         mapeador = new ObjectMapper();
         clienteList = new ArrayList<>();
-        clienteService = new ClienteService();
         
         try {
             byte[] dados = utilidades.lerArquivo(CLIENTES_JSON);
@@ -68,22 +38,7 @@ public class ClienteRepository {
 
     public Cliente cadastrarCliente(Cliente registroNovoCliente) {
     	
-    	 if (!validarCPF(registroNovoCliente.getCpfCliente())) {
-    		 //System.out.println("CPF inválido. Não foi possível cadastrar o cliente.");
-             JOptionPane.showMessageDialog(null, "CPF inválido. Não foi possível cadastrar o cliente.");
-             return null;
-         }
-    	 
-    	 if (!validarEmail(registroNovoCliente.getEmailCliente())) {
-             JOptionPane.showMessageDialog(null, "E-mail inválido. Não foi possível cadastrar o cliente.");
-             return null;
-         }
-    	 
-    	 if (cpfJaCadastrado(registroNovoCliente.getCpfCliente())) {
-    		 //System.out.println("CPF já cadastrado. Não é possível cadastrar novamente.");
-             JOptionPane.showMessageDialog(null, "CPF já cadastrado. Não é possível cadastrar novamente.");
-             return null;
-         }
+    	
         try {
         	clienteList.add(registroNovoCliente);
             String saida = mapeador.writeValueAsString(clienteList);

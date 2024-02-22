@@ -1,0 +1,22 @@
+[
+	{
+		"cpfCliente": "194.924.620-52",
+		"nomeCliente": "Marco",
+		"emailCliente": "marco@gmail.com",
+		"numeroCelularCliente": "921212121",
+		"dataNascimentoCliente": "08/08/1997",
+		"senhaCliente": "$2a$10$D7H0QzXDgCryOuTF5pZ4U.qtkUJonXR4cqMh5otW.tYiCUaUmOkNO",
+		"enderecoCliente": "Rua Teste 123",
+		"saldo": 100.0
+	},
+	{
+		"cpfCliente": "839.149.310-51",
+		"nomeCliente": "Marco",
+		"emailCliente": "marco@gmail.com",
+		"numeroCelularCliente": "921212121",
+		"dataNascimentoCliente": "08/08/1997",
+		"senhaCliente": "$2a$10$Ruv/m6y6AZZc298uJEk/8.2cjHXChx5ROGgGy4aJ1ONS2YoUppila",
+		"enderecoCliente": "Rua Teste 123",
+		"saldo": 100.0
+	}
+]

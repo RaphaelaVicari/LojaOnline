@@ -1,9 +1,11 @@
 package org.example.service;
 
 
+import java.net.PasswordAuthentication;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -12,6 +14,7 @@ import org.example.repository.ClienteRepository;
 
 
 import org.example.security.PasswordSecurity;
+import org.example.service.ClienteService.CPF;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class ClienteService {
@@ -21,6 +24,7 @@ public class ClienteService {
 
     public ClienteService() {
         this.clienteRepository = new ClienteRepository();
+        this.passwordSecurity = new PasswordSecurity();
     }
 
     public static class CPF {
@@ -111,6 +115,29 @@ public class ClienteService {
     }
 
     public Cliente clienteNovo(Cliente cliente) {
+    	
+    	 if (!validarCPF(cliente.getCpfCliente())) {
+    		 //System.out.println("CPF inválido. Não foi possível cadastrar o cliente.");
+    		 System.err.println("CPF inválido. Não foi possível cadastrar o cliente.");
+             return null;
+         }
+    	 
+    	 if (!validarEmail(cliente.getEmailCliente())) {
+             System.err.println("E-mail inválido. Não foi possível cadastrar o cliente.");
+             return null;
+         }
+    	 
+    	 if (cpfJaCadastrado(cliente.getCpfCliente())) {
+    		 //System.out.println("CPF já cadastrado. Não é possível cadastrar novamente.");
+             System.err.println("CPF já cadastrado. Não é possível cadastrar novamente.");
+             return null;
+         }
+    	 
+    	 if (cliente.getNomeCliente().trim().equals("")){
+             System.err.println("Não e possivel cadastrar com o campo nome vazio!");
+             return null;
+         }
+    	 
         cliente.setSaldo(100);
 
         cliente.setSenhaCliente( passwordSecurity.encriptarSenha(cliente.getSenhaCliente()));
@@ -130,6 +157,27 @@ public class ClienteService {
 
         // Verifica se o e-mail corresponde ao padrão definido
         return matcher.matches();
+    }
+    
+ // Adicionar o método para validar CPF
+    private boolean validarCPF(String cpf) {
+        CPF cpfUtil = new CPF(cpf);
+        
+        if (!cpfUtil.isCPF()) {        	
+            return false;
+        }
+
+        return true;
+    }
+        
+    private boolean cpfJaCadastrado(String cpf) {
+    	
+    	if(clienteRepository.consultarClientePorCpf(cpf) != null ) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 }
 

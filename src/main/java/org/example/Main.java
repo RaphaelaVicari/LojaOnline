@@ -1,35 +1,17 @@
 package org.example;
 
 import org.example.model.Cliente;
-import org.example.model.Produto;
-import org.example.model.Venda;
-import org.example.repository.ClienteRepository;
-import org.example.repository.ProdutoRepository;
-import org.example.repository.VendaRepository;
-import org.example.security.PasswordSecurity;
 import org.example.service.ClienteService;
+import org.example.service.ProdutoService;
 import org.example.util.Constantes;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
-	
     public static void main(String[] args) {
-    	
-    	Scanner scanner = new Scanner(System.in);
-
-        Cliente cliente = new Cliente();
-        cliente.setNomeCliente("breno");
-        cliente.setEmailCliente("breno@gmail.com");
-        cliente.setDataNascimentoCliente("12/02/2000");
-        cliente.setEnderecoCliente("Rua Teste 123");
-        cliente.setCpfCliente("831.429.290-70");
-        cliente.setSenhaCliente("senha@senha");
-        cliente.setNumeroCelularCliente("(11) 93589-8989");
-        cliente.setSenhaCliente("nome");
+        Scanner scanner = new Scanner(System.in);
+        ProdutoService produtoService = new ProdutoService();
 
         ClienteService clienteRepository = new ClienteService();
 
@@ -47,13 +29,12 @@ public class Main {
 
         Constantes.ABERTURADALOJA();
 
-        //Scanner scanner;
-		int menuNum = scanner.nextInt();
+        int menuNum = scanner.nextInt();
 
         switch (menuNum) {
 
             case 1:
-            	//Cliente cliente = new Cliente();
+                Cliente cliente = new Cliente();
 
                 System.out.println(Constantes.cadastroClienteNome);
                 cliente.setNomeCliente(scanner.next());
@@ -82,12 +63,18 @@ public class Main {
                 clienteRepository.cadastroSenha(scanner, senha, senhaConfirm);
                 clienteRepository.clienteNovo(cliente);
 
+                break;
             case 2:
+                produtoService.listarTodosProdutos();
+                break;
             case 3:
             case 4:
             case 9:
 
+
         }
+
+
     }
 }
 

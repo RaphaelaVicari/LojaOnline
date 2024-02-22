@@ -40,7 +40,7 @@ public class ProdutoRepository {
 
     public boolean atualizarBaseDados() {
         try {
-            String saida = mapeador.writeValueAsString(produtoList);
+            String saida = mapeador.writerWithDefaultPrettyPrinter().writeValueAsString(produtoList);
             utilidades.persistirArquivo(PRODUTOS_JSON, saida);
         } catch (IOException e) {
             e.printStackTrace();

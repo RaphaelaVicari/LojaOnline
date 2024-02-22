@@ -1,7 +1,5 @@
 package org.example.repository;
 
-import org.example.service.ClienteService;
-import org.example.service.ClienteService.CPF;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.Cliente;
@@ -10,8 +8,6 @@ import org.example.util.RepositoryUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JOptionPane;
 
 public class ClienteRepository {
 
@@ -41,7 +37,7 @@ public class ClienteRepository {
     	
         try {
         	clienteList.add(registroNovoCliente);
-            String saida = mapeador.writeValueAsString(clienteList);
+            String saida = mapeador.writerWithDefaultPrettyPrinter().writeValueAsString(clienteList);
             utilidades.persistirArquivo(CLIENTES_JSON, saida);                      
            
         } catch (IOException e) {

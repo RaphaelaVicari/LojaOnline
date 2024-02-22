@@ -2,7 +2,6 @@ package org.example.repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.model.Produto;
 import org.example.model.Venda;
 import org.example.util.RepositoryUtil;
 
@@ -34,7 +33,7 @@ public class VendaRepository {
     public Venda cadastrarVenda(Venda registroNovaVenda) {
         vendaList.add(registroNovaVenda);
         try {
-            String saida = mapeador.writeValueAsString(vendaList);
+            String saida = mapeador.writerWithDefaultPrettyPrinter().writeValueAsString(vendaList);
             utilidades.persistirArquivo(VENDAS_JSON, saida);
         } catch (IOException e) {
             e.printStackTrace();

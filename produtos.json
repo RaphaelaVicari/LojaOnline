@@ -1,1 +1,20 @@
-[{"nomeProduto":"Uva Verde","descricaoProduto":"Uva Verde Sem Caraço","precoProduto":9.99,"estoqueProduto":10}]
+[
+  {
+    "nomeProduto": "Maionese Vigor - 200g",
+    "descricaoProduto": "Feita com ovos, muito mais sabor",
+    "precoProduto": 4.99,
+    "estoqueProduto": 10
+  },
+  {
+    "nomeProduto": "Paçoca, caixa com 6 unidades 90g",
+    "descricaoProduto": "Formato de rolha, feito com amendoim",
+    "precoProduto": 5.99,
+    "estoqueProduto": 20
+  },
+  {
+    "nomeProduto": "Bolacha de Água e Sal Piraquê 200g",
+    "descricaoProduto": "Crocância, leveza e muito sabor.",
+    "precoProduto": 2.99,
+    "estoqueProduto": 15
+  }
+]

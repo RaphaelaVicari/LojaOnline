@@ -52,13 +52,33 @@ public class ProdutoService {
         return produtosEncontrados;
     }
     public void atualizarProdutoEstoque(Produto produto, int quantidadeProdutoVendido){
-        produto.setEstoqueProduto(produto.getEstoqueProduto() - quantidadeProdutoVendido);
+        produto.setEstoqueProduto(produto.getEstoqueProduto() + quantidadeProdutoVendido);
         produtoRepository.atualizarBaseDados();
     }
 
     public void listarTodosProdutos() {
+        String cabecalho = formatarColuna("NOME") +
+                formatarColuna("QUANTIDADE") +
+                formatarColuna("PREÇO") +
+                formatarColuna("DESCRIÇÃO DO PRODUTO");
+
+        System.out.println(cabecalho);
+
         for (Produto dados : produtoRepository.todosProdutos()) {
-            System.out.println(dados.toString());
+            System.out.println(String.format("%s%s%s%s",
+                    formatarColuna(dados.getNomeProduto()),
+                    formatarColuna(String.valueOf(dados.getEstoqueProduto())),
+                    formatarColuna(String.valueOf(dados.getPrecoProduto())),
+                    formatarColuna(dados.getDescricaoProduto())));
         }
     }
+
+    private String formatarColuna(String nomeColuna) {
+        if(nomeColuna.length() > 35){
+            nomeColuna = nomeColuna.substring(0,35);
+        }
+
+        return nomeColuna + " ".repeat( 35 - nomeColuna.length()) + "|";
+    }
+
 }

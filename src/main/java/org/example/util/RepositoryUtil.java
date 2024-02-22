@@ -10,7 +10,7 @@ public class RepositoryUtil {
         System.out.println(conteudo);
         Files.writeString(Paths.get(localArquivo), conteudo, StandardOpenOption.WRITE, StandardOpenOption.CREATE);
     }
-
+    
     public byte[] lerArquivo(String value) throws IOException {
         byte[] valor = Files.readAllBytes(Paths.get(value));
         return valor;

@@ -1,6 +1,9 @@
 package org.example.security;
 
+import org.example.model.Cliente;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.Scanner;
 
 public class PasswordSecurity {
     public String encriptarSenha(String senha) {
@@ -19,4 +22,6 @@ public class PasswordSecurity {
             System.out.println("Senha incorreta!");
         }
     }
+
+
 }

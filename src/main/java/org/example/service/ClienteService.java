@@ -2,6 +2,7 @@ package org.example.service;
 
 
 import java.net.PasswordAuthentication;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -143,8 +144,19 @@ public class ClienteService {
         cliente.setSenhaCliente( passwordSecurity.encriptarSenha(cliente.getSenhaCliente()));
         return clienteRepository.cadastrarCliente(cliente);
 
-    }    
- 
+    }
+
+    public String cadastroSenha(Scanner scanner, String senha, String senhaConfirm) {
+        if (senha.equals(senhaConfirm)) {
+            return senha;
+        } else {
+            System.err.println("As senhas não estão iguais.\n Digite novamente");
+            senha = scanner.next();
+            senhaConfirm = scanner.next();
+            return cadastroSenha(scanner, senha, senhaConfirm);
+        }
+    }
+
     public boolean validarEmail(String email) {
         // Define a expressão regular para validar o formato do e-mail
         String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";

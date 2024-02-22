@@ -16,8 +16,21 @@ import java.util.List;
 
 public class Main {
 
+	
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    	
+    	Scanner scanner = new Scanner(System.in);
+
+        Cliente cliente = new Cliente();
+        cliente.setNomeCliente("breno");
+        cliente.setEmailCliente("breno@gmail.com");
+        cliente.setDataNascimentoCliente("12/02/2000");
+        cliente.setEnderecoCliente("Rua Teste 123");
+        cliente.setCpfCliente("831.429.290-70");
+        cliente.setSenhaCliente("senha@senha");
+        cliente.setNumeroCelularCliente("(11) 93589-8989");
+        cliente.setSenhaCliente("nome");
+
         ClienteService clienteRepository = new ClienteService();
 
         //        Cliente cliente = new Cliente();
@@ -34,12 +47,13 @@ public class Main {
 
         Constantes.ABERTURADALOJA();
 
-        int menuNum = scanner.nextInt();
+        //Scanner scanner;
+		int menuNum = scanner.nextInt();
 
         switch (menuNum) {
 
             case 1:
-                Cliente cliente = new Cliente();
+            	//Cliente cliente = new Cliente();
 
                 System.out.println(Constantes.cadastroClienteNome);
                 cliente.setNomeCliente(scanner.next());
@@ -73,10 +87,7 @@ public class Main {
             case 4:
             case 9:
 
-
         }
-
-
     }
 }
 

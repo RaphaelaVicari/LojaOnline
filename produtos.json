@@ -1,20 +1,68 @@
 [
   {
-    "nomeProduto": "Maionese Vigor - 200g",
-    "descricaoProduto": "Feita com ovos, muito mais sabor",
-    "precoProduto": 4.99,
-    "estoqueProduto": 10
+    "nomeProduto": "Ovo de Páscoa de Chocolate 70% 400g",
+    "descricaoProduto": "Chocolate 70% recheado com trufa branca",
+    "precoProduto": 115.00,
+    "estoqueProduto": 35
   },
   {
-    "nomeProduto": "Paçoca, caixa com 6 unidades 90g",
-    "descricaoProduto": "Formato de rolha, feito com amendoim",
-    "precoProduto": 5.99,
+    "nomeProduto": "Ovo de Páscoa de Pistache 400g",
+    "descricaoProduto": "Chocolate branco com recheio de pistache",
+    "precoProduto": 115.00,
+    "estoqueProduto": 35
+  },
+  {
+    "nomeProduto": "Ovo de Páscoa de Brigadeiro 400g",
+    "descricaoProduto": "Chocolate ao leite com creme brigadeiro",
+    "precoProduto": 115.00,
+    "estoqueProduto": 35
+  },
+  {
+    "nomeProduto": "Ovo de Páscoa de Torta de Maracujá 400g",
+    "descricaoProduto": "Chocolate branco com recheio de maracujá",
+    "precoProduto": 110.00,
+    "estoqueProduto": 30
+  },
+  {
+    "nomeProduto": "Ovo de Páscoa Clássico Chocolate 280g",
+    "descricaoProduto": "Chocolate ao leite com 3 bombons",
+    "precoProduto": 90.00,
+    "estoqueProduto": 30
+  },
+  {
+    "nomeProduto": "Ovo de Páscoa Chocolate Branco 280g",
+    "descricaoProduto": "Chocolate branco com 3 bombons",
+    "precoProduto": 90.00,
+    "estoqueProduto": 30
+  },
+  {
+    "nomeProduto": "Ovo de Páscoa Zero Lactose 180g",
+    "descricaoProduto": "Chocolate zero lactose com 3 bombons",
+    "precoProduto": 70.00,
     "estoqueProduto": 20
   },
   {
-    "nomeProduto": "Bolacha de Água e Sal Piraquê 200g",
-    "descricaoProduto": "Crocância, leveza e muito sabor.",
-    "precoProduto": 2.99,
-    "estoqueProduto": 15
+    "nomeProduto": "Ovo de Páscoa Zero Adição de Açúcar 180g",
+    "descricaoProduto": "Chocolate sem adição açúcar e 3 bombons",
+    "precoProduto": 70.00,
+    "estoqueProduto": 20
+  },
+  {
+    "nomeProduto": "Caixa de Bombom Gourmet 117g",
+    "descricaoProduto": "Recheado com caramelo com toque de sal",
+    "precoProduto": 50.00,
+    "estoqueProduto": 20
+  },
+  {
+    "nomeProduto": "Caixa de Bombom sabor Careja 117g",
+    "descricaoProduto": "Chocolate recheado com licor de careja",
+    "precoProduto": 50.00,
+    "estoqueProduto": 20
+  },
+  {
+    "nomeProduto": "Caixa de Bombom Sortido 117g",
+    "descricaoProduto": "Sabores: damasco, laranja e avelã",
+    "precoProduto": 50.00,
+    "estoqueProduto": 20
   }
 ]

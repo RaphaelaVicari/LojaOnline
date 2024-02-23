@@ -57,9 +57,9 @@ public class ProdutoService {
     }
 
     public void listarTodosProdutos() {
-        String cabecalho = formatarColuna("NOME") +
-                formatarColuna("QUANTIDADE") +
-                formatarColuna("PREÇO") +
+        String cabecalho = formatarColuna("PRODUTO") +
+                formatarColuna("ESTOQUE") +
+                formatarColuna("PREÇO UNIDADE") +
                 formatarColuna("DESCRIÇÃO DO PRODUTO");
 
         System.out.println(cabecalho);
@@ -74,11 +74,11 @@ public class ProdutoService {
     }
 
     private String formatarColuna(String nomeColuna) {
-        if(nomeColuna.length() > 35){
-            nomeColuna = nomeColuna.substring(0,35);
+        if(nomeColuna.length() > 40){
+            nomeColuna = nomeColuna.substring(0,40);
         }
 
-        return nomeColuna + " ".repeat( 35 - nomeColuna.length()) + "|";
+        return nomeColuna + " ".repeat( 40 - nomeColuna.length()) + "|";
     }
 
 }

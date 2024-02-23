@@ -1,82 +1,73 @@
-[
-  {
-    "cpfCliente": "194.924.620-52",
-    "nomeCliente": "Marco",
-    "emailCliente": "marco@gmail.com",
-    "numeroCelularCliente": "921212121",
-    "dataNascimentoCliente": "08/08/1997",
-    "senhaCliente": "$2a$10$D7H0QzXDgCryOuTF5pZ4U.qtkUJonXR4cqMh5otW.tYiCUaUmOkNO",
-    "enderecoCliente": "Rua Teste 123",
-    "saldo": 100.0
-  },
-  {
-    "cpfCliente": "839.149.310-51",
-    "nomeCliente": "Marco",
-    "emailCliente": "marco@gmail.com",
-    "numeroCelularCliente": "921212121",
-    "dataNascimentoCliente": "08/08/1997",
-    "senhaCliente": "$2a$10$Ruv/m6y6AZZc298uJEk/8.2cjHXChx5ROGgGy4aJ1ONS2YoUppila",
-    "enderecoCliente": "Rua Teste 123",
-    "saldo": 100.0
-  },
-  {
-    "cpfCliente": "520.403.950-32",
-    "nomeCliente": "pedro",
-    "emailCliente": "pedro@gmail.com",
-    "numeroCelularCliente": "921212121",
-    "dataNascimentoCliente": "",
-    "senhaCliente": "$2a$10$Y.zmJyxTKvN2et9bHEyBTO0L5RnrXdVj6SdiMEdJdRDZjZdyhu69a",
-    "enderecoCliente": "Rua Teste 123",
-    "saldo": 100.0
-  },
-  {
-    "cpfCliente": "588.341.330-72",
-    "nomeCliente": "pedro",
-    "emailCliente": "pedro@gmail.com",
-    "numeroCelularCliente": "(11) 93589-8989",
-    "dataNascimentoCliente": "08/08/1997",
-    "senhaCliente": "$2a$10$5mESQQl4DPPTCK662P.tQeCxGnNjNXg7iLvLbsnPl9QgIn/8eos6G",
-    "enderecoCliente": "Rua Teste 123",
-    "saldo": 100.0
-  },
-  {
-    "cpfCliente": "258.691.150-43",
-    "nomeCliente": "julia",
-    "emailCliente": "julia@gmail.com",
-    "numeroCelularCliente": "(11) 93589-8989",
-    "dataNascimentoCliente": "12/01/2000",
-    "senhaCliente": "$2a$10$ugOaswVxe.wsLhs1Ef.4We2txDgdxAnrP7GGVEMd79NlVlQcdS70m",
-    "enderecoCliente": "Rua Teste 123",
-    "saldo": 100.0
-  },
-  {
-    "cpfCliente": "831.429.290-70",
-    "nomeCliente": "breno",
-    "emailCliente": "breno@gmail.com",
-    "numeroCelularCliente": "(11) 93589-8989",
-    "dataNascimentoCliente": "12/02/2000",
-    "senhaCliente": "$2a$10$1Om5m1MuzCZfNTDOcuf20ujUCOl4jk6jkVr4xzeke3MUX28MKc7ZW",
-    "enderecoCliente": "Rua Teste 123",
-    "saldo": 100.0
-  },
-  {
-    "cpfCliente": "175.215.910-11",
-    "nomeCliente": "r",
-    "emailCliente": "r@gmail.com",
-    "numeroCelularCliente": "(11)98877-5544",
-    "dataNascimentoCliente": "14/08/1988",
-    "senhaCliente": "$2a$10$.Ef3oLylL.fw2hXqk1F1KuEzYMqLUhMIKOcAaBm.i8QXgHePrEpRy",
-    "enderecoCliente": "test",
-    "saldo": 100.0
-  },
-  {
-    "cpfCliente": "344.895.450-02",
-    "nomeCliente": "nomeTeste",
-    "emailCliente": "umEmail@gmail.com",
-    "numeroCelularCliente": "(11)95656-7878",
-    "dataNascimentoCliente": "11/11/1990",
-    "senhaCliente": "$2a$10$xDQg6UKFVLSvFu1pKnU2gOqr67OTDUVqjXtf6J/QngN5k9AGeBFU6",
-    "enderecoCliente": "RuaTeste",
-    "saldo": 100.0
-  }
-]
+[ {
+  "cpfCliente" : "194.924.620-52",
+  "nomeCliente" : "Marco",
+  "emailCliente" : "marco@gmail.com",
+  "numeroCelularCliente" : "921212121",
+  "dataNascimentoCliente" : "08/08/1997",
+  "senhaCliente" : "$2a$10$D7H0QzXDgCryOuTF5pZ4U.qtkUJonXR4cqMh5otW.tYiCUaUmOkNO",
+  "enderecoCliente" : "Rua Teste 123",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "839.149.310-51",
+  "nomeCliente" : "Marco",
+  "emailCliente" : "marco@gmail.com",
+  "numeroCelularCliente" : "921212121",
+  "dataNascimentoCliente" : "08/08/1997",
+  "senhaCliente" : "$2a$10$Ruv/m6y6AZZc298uJEk/8.2cjHXChx5ROGgGy4aJ1ONS2YoUppila",
+  "enderecoCliente" : "Rua Teste 123",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "520.403.950-32",
+  "nomeCliente" : "pedro",
+  "emailCliente" : "pedro@gmail.com",
+  "numeroCelularCliente" : "921212121",
+  "dataNascimentoCliente" : "",
+  "senhaCliente" : "$2a$10$Y.zmJyxTKvN2et9bHEyBTO0L5RnrXdVj6SdiMEdJdRDZjZdyhu69a",
+  "enderecoCliente" : "Rua Teste 123",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "588.341.330-72",
+  "nomeCliente" : "pedro",
+  "emailCliente" : "pedro@gmail.com",
+  "numeroCelularCliente" : "(11) 93589-8989",
+  "dataNascimentoCliente" : "08/08/1997",
+  "senhaCliente" : "$2a$10$5mESQQl4DPPTCK662P.tQeCxGnNjNXg7iLvLbsnPl9QgIn/8eos6G",
+  "enderecoCliente" : "Rua Teste 123",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "258.691.150-43",
+  "nomeCliente" : "julia",
+  "emailCliente" : "julia@gmail.com",
+  "numeroCelularCliente" : "(11) 93589-8989",
+  "dataNascimentoCliente" : "12/01/2000",
+  "senhaCliente" : "$2a$10$ugOaswVxe.wsLhs1Ef.4We2txDgdxAnrP7GGVEMd79NlVlQcdS70m",
+  "enderecoCliente" : "Rua Teste 123",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "831.429.290-70",
+  "nomeCliente" : "breno",
+  "emailCliente" : "breno@gmail.com",
+  "numeroCelularCliente" : "(11) 93589-8989",
+  "dataNascimentoCliente" : "12/02/2000",
+  "senhaCliente" : "$2a$10$1Om5m1MuzCZfNTDOcuf20ujUCOl4jk6jkVr4xzeke3MUX28MKc7ZW",
+  "enderecoCliente" : "Rua Teste 123",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "175.215.910-11",
+  "nomeCliente" : "r",
+  "emailCliente" : "r@gmail.com",
+  "numeroCelularCliente" : "(11)98877-5544",
+  "dataNascimentoCliente" : "14/08/1988",
+  "senhaCliente" : "$2a$10$.Ef3oLylL.fw2hXqk1F1KuEzYMqLUhMIKOcAaBm.i8QXgHePrEpRy",
+  "enderecoCliente" : "test",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "344.895.450-02",
+  "nomeCliente" : "nomeTeste",
+  "emailCliente" : "umEmail@gmail.com",
+  "numeroCelularCliente" : "(11)95656-7878",
+  "dataNascimentoCliente" : "11/11/1990",
+  "senhaCliente" : "$2a$10$xDQg6UKFVLSvFu1pKnU2gOqr67OTDUVqjXtf6J/QngN5k9AGeBFU6",
+  "enderecoCliente" : "RuaTeste",
+  "saldo" : 250.0
+} ]

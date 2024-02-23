@@ -240,6 +240,13 @@ public class ClienteService {
 
         return matcher.matches();
     }
+
+    public void  atualizarClienteSaldo(Cliente cliente, double saldo)
+    {
+        cliente.setSaldo(saldo);
+        clienteRepository.atualizarBaseDados();
+
+    }
 }
 
 

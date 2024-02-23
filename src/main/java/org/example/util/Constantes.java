@@ -40,7 +40,7 @@ public class Constantes {
 
     ///// gift card /////
 
-    public static final String compraGiftCard = "Escolha uma opção para adicionar fundos na sua conta\n 1- R$10,00\n 2- R$25,00\n 3- R$50\n 4- R$100\n 5- R$250\n 9- voltar para o menu";
+    public static final String compraGiftCard = "Escolha uma opção para adicionar fundos na sua conta\n 1- R$10,00\n 2- R$25,00\n 3- R$50,00\n 4- R$100,00\n 5- R$250,00\n 9- voltar para o menu";
 
    public  static final  String adicionarFundos = "Deseja adicionar R$";
 

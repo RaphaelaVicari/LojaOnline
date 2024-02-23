@@ -18,6 +18,7 @@ public class ClienteRepository {
 
     private ObjectMapper mapeador;
 
+
     public ClienteRepository() {
         utilidades = new RepositoryUtil();
         mapeador = new ObjectMapper();
@@ -57,6 +58,16 @@ public class ClienteRepository {
         }
         return null;
     }
+    public boolean atualizarBaseDados() {
+        try {
 
+            String saida = mapeador.writerWithDefaultPrettyPrinter().writeValueAsString(clienteList);
+            utilidades.persistirArquivo(CLIENTES_JSON, saida);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return true;
+        }
+        return false;
+    }
 
 }

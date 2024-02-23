@@ -138,7 +138,7 @@ public class Main {
                     if (!clienteService.checkSenha(cliente, scanner.nextLine())) {
                         System.err.println("Senha incorreta \n digite novamente ");
                         if (!clienteService.checkSenha(cliente, scanner.nextLine())) {
-                            System.err.println("Senha incorreta");
+                            System.err.println("Senha incorreta\n operação cancelada");
                             break;
                         }
 
@@ -195,14 +195,13 @@ public class Main {
                         if (!clienteService.checkSenha(cliente, scanner.nextLine())) {
                             System.err.println("Senha incorreta \n digite novamente ");
                             if (!clienteService.checkSenha(cliente, scanner.nextLine())) {
-                                System.err.println("Senha incorreta");
+                                System.err.println("Senha incorreta\n operação cancelada");
                                 break;
                             }
 
                         }
                         double clienteSaldo = cliente.getSaldo();
-                        cliente.setSaldo(clienteSaldo += giftCardValor);
-
+                       clienteService.atualizarClienteSaldo(cliente,clienteSaldo+= giftCardValor);
                     }
 
 

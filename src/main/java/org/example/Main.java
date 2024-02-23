@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.model.Cliente;
+import org.example.model.Produto;
 import org.example.service.ClienteService;
 import org.example.service.ProdutoService;
 import org.example.util.Constantes;
@@ -12,10 +13,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ProdutoService produtoService = new ProdutoService();
+        ClienteService clienteService = new ClienteService();
 
-        ClienteService clienteRepository = new ClienteService();
         boolean lojaRodando = true;
         Cliente cliente = new Cliente();
+        Produto produto = new Produto();
 
         //        Cliente cliente = new Cliente();
         //        cliente.setNomeCliente("Marco");
@@ -27,47 +29,43 @@ public class Main {
         //        cliente.setNumeroCelularCliente("921212121");
         //        cliente.setSenhaCliente("nome");
         //
-        //        clienteRepository.clienteNovo(cliente);
+        //        clienteService.clienteNovo(cliente);
 
         while (lojaRodando) {
             Constantes.ABERTURADALOJA();
 
-            int menuNum = scanner.nextInt();
-
+            String menu = scanner.nextLine();
+            int menuNum = Integer.parseInt(menu);
             switch (menuNum) {
                 //cadastro de cliente
                 case 1:
 
-                    boolean criandoConta = true;
-                    while (criandoConta) {
-                        System.out.println(Constantes.cadastroClienteNome);
-                        cliente.setNomeCliente(scanner.next());
+                    System.out.println(Constantes.cadastroClienteNome);
+                    cliente.setNomeCliente(scanner.nextLine());
 
-                        System.out.println(Constantes.cadastroClienteCpf);
-                        cliente.setCpfCliente(scanner.next());
+                    System.out.println(Constantes.cadastroClienteCpf);
+                    cliente.setCpfCliente(scanner.nextLine());
 
-                        System.out.println(Constantes.cadastroClienteData);
-                        cliente.setDataNascimentoCliente(scanner.next());
+                    System.out.println(Constantes.cadastroClienteData);
+                    cliente.setDataNascimentoCliente(scanner.nextLine());
 
-                        System.out.println(Constantes.cadastroClienteEmail);
-                        cliente.setEmailCliente(scanner.next());
+                    System.out.println(Constantes.cadastroClienteEmail);
+                    cliente.setEmailCliente(scanner.nextLine());
 
-                        System.out.println(Constantes.cadastroClienteCelular);
-                        cliente.setNumeroCelularCliente(scanner.next());
+                    System.out.println(Constantes.cadastroClienteCelular);
+                    cliente.setNumeroCelularCliente(scanner.nextLine());
 
-                        System.out.println(Constantes.cadastroClienteEndereco);
-                        cliente.setEnderecoCliente(scanner.next());
+                    System.out.println(Constantes.cadastroClienteEndereco);
+                    cliente.setEnderecoCliente(scanner.nextLine());
 
-                        System.out.println(Constantes.cadastroClienteSenha);
-                        String senha = scanner.next();
+                    System.out.println(Constantes.cadastroClienteSenha);
+                    String senha = scanner.nextLine();
 
-                        System.out.println(Constantes.cadastroClienteSenhaConfirma);
-                        String senhaConfirm = scanner.next();
+                    System.out.println(Constantes.cadastroClienteSenhaConfirma);
+                    String senhaConfirm = scanner.nextLine();
 
-                        clienteRepository.cadastroSenha(scanner, senha, senhaConfirm);
-                        clienteRepository.clienteNovo(cliente);
-                        criandoConta = false;
-                    }
+                    cliente.setSenhaCliente(clienteService.cadastroSenha(scanner, senha, senhaConfirm));
+                    clienteService.clienteNovo(cliente);
 
                     break;
 
@@ -76,33 +74,84 @@ public class Main {
                     produtoService.listarTodosProdutos();
                     break;
 
-                    //cadastrar produto
+                //cadastrar produto
                 case 3:
-                    //status da conta
+
+                    boolean cadastrandoProduto = true;
+                    while (cadastrandoProduto) {
+                        System.out.println(Constantes.cadastroProdutoNome);
+                        produto.setNomeProduto(scanner.nextLine());
+
+                        System.out.println(Constantes.cadastroProdutoDescricao);
+                        produto.setDescricaoProduto(scanner.nextLine());
+
+                        System.out.println(Constantes.cadastroProdutoValor);
+                        String produtoValor = scanner.nextLine();
+                        double valor = Double.parseDouble(produtoValor);
+                        produto.setPrecoProduto(valor);
+
+                        System.out.println(Constantes.cadastroProdutoEstoque);
+                        String produtoEstoque = scanner.nextLine();
+                        int estoque = Integer.parseInt(produtoEstoque);
+                        produto.setEstoqueProduto(estoque);
+
+                        produtoService.cadastrarProduto(produto);
+
+                        System.out.println("Deseja adicionar um novo produto? \n 0- Não \n 1- Sim");
+
+                        boolean repetirCadastro = true;
+                        while (repetirCadastro) {
+                            int novoProduto = Integer.parseInt(scanner.nextLine());
+                            if (novoProduto < 0 || novoProduto > 1) {
+                                System.out.println("Opção inválida");
+
+                            }
+                            if (novoProduto == 0) {
+                                cadastrandoProduto = false;
+                                repetirCadastro = false;
+                            }
+                            if (novoProduto == 1) {
+                                repetirCadastro = false;
+                            }
+
+                        }
+
+
+                    }
+                    break;
+
+                //status da conta
                 case 4:
 
                     System.out.println(Constantes.statusCliente);
 
                     System.out.println(Constantes.statusClienteCpf);
-                    clienteRepository.cpfCheck(scanner, cliente, scanner.next());
+                    String cpf = scanner.nextLine();
+                    if (!clienteService.cpfJaCadastrado(cpf)) {
+                        System.err.println("CPF não cadastrado");
+                        break;
+                    }
+                    cliente = clienteService.consultarClientePorCpf(cpf);
 
                     System.out.println(Constantes.statusClienteSenha);
-                    clienteRepository.checkSenha(scanner.next(), scanner);
 
-                    cliente.getNomeCliente();
-                    cliente.getEmailCliente();
-                    cliente.getDataNascimentoCliente();
-                    cliente.getNumeroCelularCliente();
-                    cliente.getSaldo();
+                    if (!clienteService.checkSenha(cliente, scanner.nextLine())) {
+                        System.err.println("Senha incorreta \n digite novamente ");
+                        if (!clienteService.checkSenha(cliente, scanner.nextLine())) {
+                            System.err.println("Senha incorreta");
+                            break;
+                        }
+
+                    }
+                    System.out.println("Senha correta!");
+                    System.out.println(cliente.toString());
+
                     break;
                 //encerrar programa
                 case 9:
                     lojaRodando = false;
                     break;
             }
-
-
-
 
 
         }

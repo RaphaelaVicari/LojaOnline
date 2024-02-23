@@ -125,7 +125,7 @@ public class Main {
 
                     System.out.println(Constantes.statusCliente);
 
-                    System.out.println(Constantes.statusClienteCpf);
+                    System.out.println(Constantes.clienteCpf);
                     String cpf = scanner.nextLine();
                     if (!clienteService.cpfJaCadastrado(cpf)) {
                         System.err.println("CPF não cadastrado");
@@ -133,7 +133,7 @@ public class Main {
                     }
                     cliente = clienteService.consultarClientePorCpf(cpf);
 
-                    System.out.println(Constantes.statusClienteSenha);
+                    System.out.println(Constantes.clienteSenha);
 
                     if (!clienteService.checkSenha(cliente, scanner.nextLine())) {
                         System.err.println("Senha incorreta \n digite novamente ");
@@ -147,9 +147,74 @@ public class Main {
                     System.out.println(cliente.toString());
 
                     break;
+
+                //giftCard
+                case 5:
+                    System.out.println(Constantes.compraGiftCard);
+                    String menuGift = scanner.nextLine();
+                    int menuGiftNum = Integer.parseInt(menuGift);
+                    double giftCardValor = 0;
+
+                    switch (menuGiftNum) {
+
+                        case 1:
+                            giftCardValor = 10;
+                            break;
+
+                        case 2:
+                            giftCardValor = 20;
+                            break;
+                        case 3:
+                            giftCardValor = 50;
+                            break;
+                        case 4:
+                            giftCardValor = 100;
+                            break;
+                        case 5:
+                            giftCardValor = 250;
+                            break;
+                        case 9:
+                            break;
+                        default:
+                            System.out.println("Opção inválida");
+                            break;
+
+                    }
+                    if (menuGiftNum >= 1 && menuGiftNum <= 5) {
+                        System.out.println("R$" + giftCardValor + " serão adicionados na sua conta.\nPara confirmar, insira as informações abaixo:");
+                        System.out.println(Constantes.clienteCpf);
+                        cpf = scanner.nextLine();
+                        if (!clienteService.cpfJaCadastrado(cpf)) {
+                            System.err.println("CPF não cadastrado");
+                            break;
+                        }
+                        cliente = clienteService.consultarClientePorCpf(cpf);
+
+                        System.out.println(Constantes.clienteSenha);
+
+                        if (!clienteService.checkSenha(cliente, scanner.nextLine())) {
+                            System.err.println("Senha incorreta \n digite novamente ");
+                            if (!clienteService.checkSenha(cliente, scanner.nextLine())) {
+                                System.err.println("Senha incorreta");
+                                break;
+                            }
+
+                        }
+                        double clienteSaldo = cliente.getSaldo();
+                        cliente.setSaldo(clienteSaldo += giftCardValor);
+
+                    }
+
+
+                    break;
+
                 //encerrar programa
                 case 9:
                     lojaRodando = false;
+                    break;
+
+                default:
+                    System.out.println("Opção inválida");
                     break;
             }
 

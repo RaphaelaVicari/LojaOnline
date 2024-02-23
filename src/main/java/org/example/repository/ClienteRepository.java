@@ -16,13 +16,13 @@ public class ClienteRepository {
 
     private RepositoryUtil utilidades;
 
-    private ObjectMapper mapeador;     
+    private ObjectMapper mapeador;
 
     public ClienteRepository() {
         utilidades = new RepositoryUtil();
         mapeador = new ObjectMapper();
         clienteList = new ArrayList<>();
-        
+
         try {
             byte[] dados = utilidades.lerArquivo(CLIENTES_JSON);
             clienteList = mapeador.readValue(dados, new TypeReference<>() {
@@ -33,38 +33,30 @@ public class ClienteRepository {
     }
 
     public Cliente cadastrarCliente(Cliente registroNovoCliente) {
-    	
-    	
+
+
         try {
-        	clienteList.add(registroNovoCliente);
+            clienteList.add(registroNovoCliente);
             String saida = mapeador.writerWithDefaultPrettyPrinter().writeValueAsString(clienteList);
-            utilidades.persistirArquivo(CLIENTES_JSON, saida);                      
-           
+            utilidades.persistirArquivo(CLIENTES_JSON, saida);
+
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
         return registroNovoCliente;
     }
-    
 
-    public Cliente consultarClientePorCpf(String cpfCliente){
 
-        for(Cliente dados : clienteList){
-            if (dados.getCpfCliente().equalsIgnoreCase(cpfCliente)){
-                return dados;
-            }
-        }
-        return null;
-    }
-
-    public Cliente consultarClientePorSenha(String senha) {
+    public Cliente consultarClientePorCpf(String cpfCliente) {
 
         for (Cliente dados : clienteList) {
-            if (dados.getSenhaCliente().equalsIgnoreCase(senha)) {
+            if (dados.getCpfCliente().equalsIgnoreCase(cpfCliente)) {
                 return dados;
             }
         }
         return null;
     }
+
+
 }

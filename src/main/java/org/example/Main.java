@@ -16,8 +16,9 @@ public class Main {
         ClienteService clienteService = new ClienteService();
 
         boolean lojaRodando = true;
-        Cliente cliente = new Cliente();
-        Produto produto = new Produto();
+
+        Cliente cliente;
+        Produto produto;
 
         //        Cliente cliente = new Cliente();
         //        cliente.setNomeCliente("Marco");
@@ -39,6 +40,8 @@ public class Main {
             switch (menuNum) {
                 //cadastro de cliente
                 case 1:
+
+                    cliente = new Cliente();
 
                     System.out.println(Constantes.cadastroClienteNome);
                     cliente.setNomeCliente(scanner.nextLine());
@@ -79,6 +82,8 @@ public class Main {
 
                     boolean cadastrandoProduto = true;
                     while (cadastrandoProduto) {
+                        produto = new Produto();
+
                         System.out.println(Constantes.cadastroProdutoNome);
                         produto.setNomeProduto(scanner.nextLine());
 
@@ -104,7 +109,6 @@ public class Main {
                             int novoProduto = Integer.parseInt(scanner.nextLine());
                             if (novoProduto < 0 || novoProduto > 1) {
                                 System.out.println("Opção inválida");
-
                             }
                             if (novoProduto == 0) {
                                 cadastrandoProduto = false;
@@ -201,7 +205,7 @@ public class Main {
 
                         }
                         double clienteSaldo = cliente.getSaldo();
-                       clienteService.atualizarClienteSaldo(cliente,clienteSaldo+= giftCardValor);
+                        clienteService.atualizarClienteSaldo(cliente, clienteSaldo += giftCardValor);
                     }
 
 

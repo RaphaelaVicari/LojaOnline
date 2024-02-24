@@ -57,28 +57,33 @@ public class ProdutoService {
     }
 
     public void listarTodosProdutos() {
-        String cabecalho = formatarColuna("PRODUTO") +
-                formatarColuna("ESTOQUE") +
-                formatarColuna("PREÇO UNIDADE") +
-                formatarColuna("DESCRIÇÃO DO PRODUTO");
+
+        String cabecalho = formatarColuna("PRODUTO", 45) +
+                formatarColuna("ESTOQUE", 10) +
+                formatarColuna("PREÇO UNIDADE", 15) +
+                formatarColuna("DESCRIÇÃO DO PRODUTO", 50);
 
         System.out.println(cabecalho);
 
         for (Produto dados : produtoRepository.todosProdutos()) {
             System.out.println(String.format("%s%s%s%s",
-                    formatarColuna(dados.getNomeProduto()),
-                    formatarColuna(String.valueOf(dados.getEstoqueProduto())),
-                    formatarColuna(String.valueOf(dados.getPrecoProduto())),
-                    formatarColuna(dados.getDescricaoProduto())));
+                    formatarColuna(dados.getNomeProduto(), 45),
+                    formatarColuna(String.valueOf(dados.getEstoqueProduto()), 10),
+                    formatarColuna(String.valueOf(dados.getPrecoProduto()), 15),
+                    formatarColuna(dados.getDescricaoProduto(), 50)));
         }
+
+
     }
 
-    private String formatarColuna(String nomeColuna) {
-        if(nomeColuna.length() > 40){
-            nomeColuna = nomeColuna.substring(0,40);
+    private String formatarColuna(String nomeColuna, int tamanhoColuna) {
+        nomeColuna = "abc";
+        tamanhoColuna = 30;
+        if(nomeColuna.length() > tamanhoColuna){
+            nomeColuna = nomeColuna.substring(0,tamanhoColuna);
         }
 
-        return nomeColuna + " ".repeat( 40 - nomeColuna.length()) + "|";
+        return nomeColuna + " ".repeat( tamanhoColuna - nomeColuna.length()) + "|";
     }
 
 }

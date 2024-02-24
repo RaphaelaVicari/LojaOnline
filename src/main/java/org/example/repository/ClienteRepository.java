@@ -60,7 +60,6 @@ public class ClienteRepository {
     }
     public boolean atualizarBaseDados() {
         try {
-
             String saida = mapeador.writerWithDefaultPrettyPrinter().writeValueAsString(clienteList);
             utilidades.persistirArquivo(CLIENTES_JSON, saida);
         } catch (IOException e) {

@@ -6,6 +6,11 @@ import org.example.security.PasswordSecurity;
 
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import java.net.PasswordAuthentication;
+import java.sql.Date;
+import java.text.MessageFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,16 +36,16 @@ public class ClienteService {
         public boolean isCPF() {
 
             if (this.cpf.equals("00000000000") ||
-                    this.cpf.equals("11111111111") ||
-                    this.cpf.equals("22222222222") ||
-                    this.cpf.equals("33333333333") ||
-                    this.cpf.equals("44444444444") ||
-                    this.cpf.equals("55555555555") ||
-                    this.cpf.equals("66666666666") ||
-                    this.cpf.equals("77777777777") ||
-                    this.cpf.equals("88888888888") ||
-                    this.cpf.equals("99999999999") ||
-                    this.cpf.length() != 11)
+                this.cpf.equals("11111111111") ||
+                this.cpf.equals("22222222222") ||
+                this.cpf.equals("33333333333") ||
+                this.cpf.equals("44444444444") ||
+                this.cpf.equals("55555555555") ||
+                this.cpf.equals("66666666666") ||
+                this.cpf.equals("77777777777") ||
+                this.cpf.equals("88888888888") ||
+                this.cpf.equals("99999999999") ||
+                this.cpf.length() != 11)
                 return (false);
 
             char dig10, dig11;
@@ -148,6 +153,8 @@ public class ClienteService {
             System.err.println("Não e possivel cadastrar com o campo senha vazio!");
             return null;
         }
+        
+        cliente.setNumeroCelularCliente(formatarNumeroCelular(cliente.getNumeroCelularCliente()));
 
         cliente.setSaldo(100);
 
@@ -211,11 +218,27 @@ public class ClienteService {
         // Verifica se o e-mail corresponde ao padrão definido
         return matcher.matches();
     }
+    
+ // Método para formatar o número de celular
+    private String formatarNumeroCelular(String numeroCelular) {
+        // Remove todos os caracteres não numéricos
+        String numeroApenasDigitos = numeroCelular.replaceAll("\\D", "");
+
+        // Verifica se o número tem 10 ou 11 dígitos
+        if (numeroApenasDigitos.length() == 10 || numeroApenasDigitos.length() == 11) {
+            return MessageFormat.format("({0}) {1}-{2}",
+                    numeroApenasDigitos.substring(0, 2),
+                    numeroApenasDigitos.substring(2, 7),
+                    numeroApenasDigitos.substring(7));
+        }
+
+        return numeroCelular;
+    }
 
     // Método para validar número de celular
     public boolean validarNumeroCelular(String numeroCelular) {
-        // Formato aceito: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
-        String regexNumeroCelular = "\\(\\d{2}\\)\\d{4,5}-\\d{4}";
+        // Formato aceito: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX ou XXXXXXXXXXX
+        String regexNumeroCelular = "(\\(\\d{2}\\)\\d{4,5}-\\d{4})|\\d{11}";
 
         Pattern pattern = Pattern.compile(regexNumeroCelular);
         Matcher matcher = pattern.matcher(numeroCelular);

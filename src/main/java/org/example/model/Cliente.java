@@ -1,5 +1,7 @@
 package org.example.model;
 
+import java.sql.Date;
+
 public class Cliente {
 
     private String cpfCliente;
@@ -62,8 +64,8 @@ public class Cliente {
         return dataNascimentoCliente;
     }
 
-    public void setDataNascimentoCliente(String dataNascimentoCliente) {
-        this.dataNascimentoCliente = dataNascimentoCliente;
+    public void setDataNascimentoCliente(String data) {
+        this.dataNascimentoCliente = data;
     }
 
     public String getSenhaCliente() {

@@ -46,7 +46,6 @@ public class ProdutoService {
         }
 
         return produtoRepository.cadastrarProduto(produto);
-
     }
 
     public Produto removerProduto(long codigoDoProduto) {
@@ -63,6 +62,7 @@ public class ProdutoService {
         for (Produto p : produtoRepository.todosProdutos()) {
             if (p.getCodigoProduto() == codigoProduto) {
                 return p;
+                
             }
         }
         return null;

@@ -47,6 +47,5 @@ public class EstoqueService {
         produtoService.atualizarProdutoEstoque(p, 1);
         return true;
     }
-
 }
 

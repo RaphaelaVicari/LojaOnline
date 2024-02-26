@@ -18,6 +18,4 @@ public class PasswordSecurity {
         //forma de verificar a senha
         return BCrypt.checkpw(senha, senhaHash);
     }
-
-
 }

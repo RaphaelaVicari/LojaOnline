@@ -12,6 +12,7 @@ import org.example.service.VendaService;
 import org.example.util.Constantes;
 
 import java.util.Scanner;
+import javax.xml.crypto.Data;
 
 public class Main {
 
@@ -31,7 +32,7 @@ public class Main {
             String menu = scanner.nextLine();
             int menuNum = Integer.parseInt(menu);
             switch (menuNum) {
-                //cadastro de cliente
+               
                 case 1:
 
                     Cliente cliente = new Cliente();
@@ -180,6 +181,7 @@ public class Main {
                         }
 
                     }
+                    
                     break;
 
                 case 6:
@@ -188,17 +190,14 @@ public class Main {
                 //encerrar programa
                 case 9:
                     lojaRodando = false;
+                    System.out.println("Programa encerrado!!!");
                     break;
 
                 default:
                     System.out.println("Opção inválida");
                     break;
             }
-
-
         }
-
-
     }
 
     private static void menuAdministrativo(Scanner scanner, ProdutoService produtoService, EstoqueService estoqueService) {

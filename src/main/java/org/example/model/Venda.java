@@ -7,10 +7,6 @@ import static org.example.util.FuncoesUtil.formatarColuna;
 
 public class Venda {
 
-    public Venda() {
-
-    }
-
     public Venda(Cliente cliente) {
         listaProdutos = new ArrayList<>();
         valorTotalVenda = 0;

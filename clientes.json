@@ -69,6 +69,7 @@
   "dataNascimentoCliente" : "11/11/1990",
   "senhaCliente" : "$2a$10$xDQg6UKFVLSvFu1pKnU2gOqr67OTDUVqjXtf6J/QngN5k9AGeBFU6",
   "enderecoCliente" : "RuaTeste",
+<<<<<<< Upstream, based on branch 'main' of https://github.com/RaphaelaVicari/LojaOnline.git
   "saldo": 600.0
 },
   {
@@ -100,4 +101,61 @@
     "senhaCliente": "$2a$10$13/trw5mFS/gZ6BHmjIzQeFf7xYO8u7yFRyWAKrS7BGeFzMGHVJvm",
     "enderecoCliente": "rua teste, 1",
     "saldo": 100.0
+=======
+  "saldo" : 250.0
+}, {
+  "cpfCliente" : "69212801013",
+  "nomeCliente" : "teste",
+  "emailCliente" : "teste@gmail.com",
+  "numeroCelularCliente" : "(11)96584-7878",
+  "dataNascimentoCliente" : "15/02/2000",
+  "senhaCliente" : "$2a$10$S3d20.UzYLBlO77ZRgFciOTHavv1CUbG7K8Y1tSRVMGBVHnlLcRB6",
+  "enderecoCliente" : "teste",
+  "saldo" : 120.0
+}, {
+  "cpfCliente" : "773.816.730-02",
+  "nomeCliente" : "sarah",
+  "emailCliente" : "sarah@gmail.com",
+  "numeroCelularCliente" : "(87)96547-2562",
+  "dataNascimentoCliente" : "15/02/2003",
+  "senhaCliente" : "$2a$10$V0Y.C6NTGbwH0FKmatA2PewPl.vJYFrJapm9Z8ogYcS5X7O9TFKfG",
+  "enderecoCliente" : "barao",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "429.803.190-07",
+  "nomeCliente" : "bea",
+  "emailCliente" : "bea@gmail.com",
+  "numeroCelularCliente" : "8795474987",
+  "dataNascimentoCliente" : "14/01/2004",
+  "senhaCliente" : "$2a$10$yXGfHtai7.9Mppm9ltEYduCQXBw63Kx6kkkhgy9qhMq91L2tk2kbS",
+  "enderecoCliente" : "de",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "785.313.400-20",
+  "nomeCliente" : "neto",
+  "emailCliente" : "neto@gmail.com",
+  "numeroCelularCliente" : "11987458765",
+  "dataNascimentoCliente" : "14/05/2015",
+  "senhaCliente" : "$2a$10$WVBFzmlPmyi.DNfMgucJH.gBoCXxnchks4WNY2Mtz6x5iwLgq3F7C",
+  "enderecoCliente" : "re",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "691.263.870-85",
+  "nomeCliente" : "tina",
+  "emailCliente" : "tina@hotmail.com",
+  "numeroCelularCliente" : "(11) 87549-885",
+  "dataNascimentoCliente" : "15/10/2010",
+  "senhaCliente" : "$2a$10$H6..e6uXL.o.yWudUXjds.8OtMbKH0hcbyBKTuldZtx4CJ3BsI.VO",
+  "enderecoCliente" : "rua da paz",
+  "saldo" : 100.0
+}, {
+  "cpfCliente" : "969.419.410-57",
+  "nomeCliente" : "sonia",
+  "emailCliente" : "sonia@gmail.com",
+  "numeroCelularCliente" : "(11) 85874-565",
+  "dataNascimentoCliente" : "25/02/2021",
+  "senhaCliente" : "$2a$10$lQCYpzVjjYvZbuVFM.JOYOnLjuM2AN9FUeaKixdrmp6iCv2py8Cj2",
+  "enderecoCliente" : "re",
+  "saldo" : 100.0
+>>>>>>> d9e889a Adicionado metodo formatarNumeroCelular
 } ]

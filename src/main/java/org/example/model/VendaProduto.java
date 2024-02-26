@@ -2,10 +2,6 @@ package org.example.model;
 
 public class VendaProduto {
 
-    public VendaProduto(){
-
-    }
-
     public VendaProduto(Produto produto) {
         setCodigoProduto(produto.getCodigoProduto());
         setNomeProduto(produto.getNomeProduto());

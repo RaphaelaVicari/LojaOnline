@@ -1,68 +1,85 @@
 [
   {
+    "codigoProduto": 1,
     "nomeProduto": "Ovo de Páscoa de Chocolate 70% 400g",
     "descricaoProduto": "Chocolate 70% recheado com trufa branca",
-    "precoProduto": 115.00,
+    "precoProduto": 115.0,
     "estoqueProduto": 35
   },
   {
+    "codigoProduto": 2,
     "nomeProduto": "Ovo de Páscoa de Pistache 400g",
     "descricaoProduto": "Chocolate branco com recheio de pistache",
-    "precoProduto": 115.00,
+    "precoProduto": 115.0,
     "estoqueProduto": 35
   },
   {
+    "codigoProduto": 3,
     "nomeProduto": "Ovo de Páscoa de Brigadeiro 400g",
     "descricaoProduto": "Chocolate ao leite com creme brigadeiro",
-    "precoProduto": 115.00,
+    "precoProduto": 115.0,
     "estoqueProduto": 35
   },
   {
+    "codigoProduto": 4,
     "nomeProduto": "Ovo de Páscoa de Torta de Maracujá 400g",
     "descricaoProduto": "Chocolate branco com recheio de maracujá",
-    "precoProduto": 110.00,
+    "precoProduto": 110.0,
     "estoqueProduto": 30
   },
   {
+    "codigoProduto": 5,
     "nomeProduto": "Ovo de Páscoa Clássico Chocolate 280g",
     "descricaoProduto": "Chocolate ao leite com 3 bombons",
-    "precoProduto": 90.00,
+    "precoProduto": 90.0,
     "estoqueProduto": 30
   },
   {
+    "codigoProduto": 6,
     "nomeProduto": "Ovo de Páscoa Chocolate Branco 280g",
     "descricaoProduto": "Chocolate branco com 3 bombons",
-    "precoProduto": 90.00,
+    "precoProduto": 90.0,
     "estoqueProduto": 30
   },
   {
+    "codigoProduto": 7,
     "nomeProduto": "Ovo de Páscoa Zero Lactose 180g",
     "descricaoProduto": "Chocolate zero lactose com 3 bombons",
-    "precoProduto": 70.00,
-    "estoqueProduto": 20
+    "precoProduto": 70.0,
+    "estoqueProduto": 25
   },
   {
+    "codigoProduto": 8,
     "nomeProduto": "Ovo de Páscoa Zero Adição de Açúcar 180g",
     "descricaoProduto": "Chocolate sem adição açúcar e 3 bombons",
-    "precoProduto": 70.00,
-    "estoqueProduto": 20
+    "precoProduto": 70.0,
+    "estoqueProduto": 25
   },
   {
+    "codigoProduto": 9,
     "nomeProduto": "Caixa de Bombom Gourmet 117g",
     "descricaoProduto": "Recheado com caramelo com toque de sal",
-    "precoProduto": 50.00,
+    "precoProduto": 50.0,
     "estoqueProduto": 20
   },
   {
+    "codigoProduto": 10,
     "nomeProduto": "Caixa de Bombom sabor Careja 117g",
     "descricaoProduto": "Chocolate recheado com licor de careja",
-    "precoProduto": 50.00,
+    "precoProduto": 50.0,
     "estoqueProduto": 20
   },
   {
+    "codigoProduto": 11,
     "nomeProduto": "Caixa de Bombom Sortido 117g",
     "descricaoProduto": "Sabores: damasco, laranja e avelã",
-    "precoProduto": 50.00,
-    "estoqueProduto": 20
+    "precoProduto": 50.0,
+    "estoqueProduto": 100
   }
-]
+]{
+  "codigoProduto": 33,
+  "nomeProduto": "Ovo Gostoso",
+  "descricaoProduto": "Enche a barriga por 9 meses ",
+  "precoProduto": 34.0,
+  "estoqueProduto": 24
+} ]

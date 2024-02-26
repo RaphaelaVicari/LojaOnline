@@ -7,10 +7,13 @@ public class VendaProduto {
     }
 
     public VendaProduto(Produto produto) {
+        setCodigoProduto(produto.getCodigoProduto());
         setNomeProduto(produto.getNomeProduto());
         setDescricaoProduto(produto.getDescricaoProduto());
         setPrecoProduto(produto.getPrecoProduto());
     }
+
+    private long codigoProduto;
 
     private String nomeProduto;
 
@@ -40,6 +43,14 @@ public class VendaProduto {
 
     public void setPrecoProduto(double precoProduto) {
         this.precoProduto = precoProduto;
+    }
+
+    public long getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(long codigoProduto) {
+        this.codigoProduto = codigoProduto;
     }
 
     @Override

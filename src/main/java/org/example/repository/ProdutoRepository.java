@@ -7,6 +7,7 @@ import org.example.util.RepositoryUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProdutoRepository {
@@ -21,10 +22,15 @@ public class ProdutoRepository {
     public ProdutoRepository() {
         utilidades = new RepositoryUtil();
         mapeador = new ObjectMapper();
+        lerBaseDados();
+    }
+
+    public void lerBaseDados() {
         try {
             byte[] dados = utilidades.lerArquivo(PRODUTOS_JSON);
             produtoList = mapeador.readValue(dados, new TypeReference<>() {
             });
+            produtoList.sort(Comparator.comparingLong(Produto::getCodigoProduto));
         } catch (IOException e) {
             produtoList = new ArrayList<>();
         }
@@ -44,12 +50,19 @@ public class ProdutoRepository {
             utilidades.persistirArquivo(PRODUTOS_JSON, saida);
         } catch (IOException e) {
             e.printStackTrace();
-            return true;
+            return false;
         }
-        return false;
+        produtoList.sort(Comparator.comparingLong(Produto::getCodigoProduto));
+        return true;
     }
 
     public List<Produto> todosProdutos() {
         return produtoList;
+    }
+
+    public Produto removerProduto(Produto produto) {
+        produtoList.remove(produto);
+        atualizarBaseDados();
+        return produto;
     }
 }

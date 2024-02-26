@@ -1,21 +1,14 @@
 package org.example.service;
 
-import java.net.PasswordAuthentication;
+import org.example.model.Cliente;
+import org.example.repository.ClienteRepository;
+import org.example.security.PasswordSecurity;
+
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.swing.JOptionPane;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
-
-import org.example.model.Cliente;
-import org.example.repository.ClienteRepository;
-
-
-import org.example.security.PasswordSecurity;
-import org.example.service.ClienteService.CPF;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class ClienteService {
 
@@ -241,11 +234,17 @@ public class ClienteService {
         return matcher.matches();
     }
 
-    public void  atualizarClienteSaldo(Cliente cliente, double saldo)
+    public void atualizarClienteSaldo(Cliente cliente, double saldo)
     {
-        cliente.setSaldo(saldo);
-        clienteRepository.atualizarBaseDados();
+        Cliente c = consultarClientePorCpf(cliente.getCpfCliente());
 
+        if (c == null) {
+            System.err.println("Cliente inexistente para atualização de saldo");
+            return;
+        }
+
+        c.setSaldo(saldo);
+        clienteRepository.atualizarBaseDados();
     }
 }
 

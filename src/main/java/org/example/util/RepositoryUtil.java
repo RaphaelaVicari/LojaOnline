@@ -7,7 +7,6 @@ import java.nio.file.StandardOpenOption;
 
 public class RepositoryUtil {
     public void persistirArquivo(String localArquivo, String conteudo) throws IOException {
-        System.out.println(conteudo);
         Files.writeString(Paths.get(localArquivo), conteudo, StandardOpenOption.WRITE, StandardOpenOption.CREATE);
     }
     

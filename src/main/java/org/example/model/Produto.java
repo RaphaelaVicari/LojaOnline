@@ -1,6 +1,10 @@
 package org.example.model;
 
+import java.util.Objects;
+
 public class Produto {
+
+    private long codigoProduto;
 
     private String nomeProduto;
 
@@ -42,13 +46,35 @@ public class Produto {
         this.estoqueProduto = estoqueProduto;
     }
 
+    public long getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(long codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }
+
     @Override
     public String toString() {
         return "Produto{" +
-                "nomeProduto='" + nomeProduto + '\'' +
+                "codigoProduto=" + codigoProduto +
+                ", nomeProduto='" + nomeProduto + '\'' +
                 ", descricaoProduto='" + descricaoProduto + '\'' +
                 ", precoProduto=" + precoProduto +
                 ", estoqueProduto=" + estoqueProduto +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produto produto = (Produto) o;
+        return codigoProduto == produto.codigoProduto;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigoProduto);
     }
 }

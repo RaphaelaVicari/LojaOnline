@@ -69,5 +69,35 @@
   "dataNascimentoCliente" : "11/11/1990",
   "senhaCliente" : "$2a$10$xDQg6UKFVLSvFu1pKnU2gOqr67OTDUVqjXtf6J/QngN5k9AGeBFU6",
   "enderecoCliente" : "RuaTeste",
-  "saldo" : 250.0
+  "saldo": 600.0
+},
+  {
+    "cpfCliente": "908.478.280-18",
+    "nomeCliente": "RAPHAELA ",
+    "emailCliente": "EMAILTESTE@GMAIL.COM",
+    "numeroCelularCliente": "(11)94937-0056",
+    "dataNascimentoCliente": "08/08/1997",
+    "senhaCliente": "$2a$10$QmbOSdvlVNYrLB5mIwS/wO6rrTraaI20UP6PIXkiQ7cw.ITeX9v36",
+    "enderecoCliente": "RUA TAL, NUMERO 10",
+    "saldo": 100.0
+  },
+  {
+    "cpfCliente": "824.957.010-35",
+    "nomeCliente": "Igor",
+    "emailCliente": "teste@gmail.com",
+    "numeroCelularCliente": "(11)94274-7963",
+    "dataNascimentoCliente": "08/08/1997",
+    "senhaCliente": "$2a$10$ouF7l2BdkgeCT1gc6GAeg.QIijFkH4g075C8Q.mr93YmdS/hXlB5i",
+    "enderecoCliente": "Rua f",
+    "saldo": 50.0
+  },
+  {
+    "cpfCliente": "358.775.490-06",
+    "nomeCliente": "Raphaela Silvestre",
+    "emailCliente": "raphaela.teste@gmail.com",
+    "numeroCelularCliente": "(11)94352-9897",
+    "dataNascimentoCliente": "06/10/1999",
+    "senhaCliente": "$2a$10$13/trw5mFS/gZ6BHmjIzQeFf7xYO8u7yFRyWAKrS7BGeFzMGHVJvm",
+    "enderecoCliente": "rua teste, 1",
+    "saldo": 100.0
 } ]

@@ -17,8 +17,6 @@ public class PasswordSecurity {
     public boolean checkSenha(String senha, String senhaHash) {
         //forma de verificar a senha
         return BCrypt.checkpw(senha, senhaHash);
-
-
     }
 
 

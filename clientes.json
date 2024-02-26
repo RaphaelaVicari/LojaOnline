@@ -69,7 +69,6 @@
   "dataNascimentoCliente" : "11/11/1990",
   "senhaCliente" : "$2a$10$xDQg6UKFVLSvFu1pKnU2gOqr67OTDUVqjXtf6J/QngN5k9AGeBFU6",
   "enderecoCliente" : "RuaTeste",
-<<<<<<< Upstream, based on branch 'main' of https://github.com/RaphaelaVicari/LojaOnline.git
   "saldo": 600.0
 },
   {
@@ -101,8 +100,6 @@
     "senhaCliente": "$2a$10$13/trw5mFS/gZ6BHmjIzQeFf7xYO8u7yFRyWAKrS7BGeFzMGHVJvm",
     "enderecoCliente": "rua teste, 1",
     "saldo": 100.0
-=======
-  "saldo" : 250.0
 }, {
   "cpfCliente" : "69212801013",
   "nomeCliente" : "teste",
@@ -157,5 +154,4 @@
   "senhaCliente" : "$2a$10$lQCYpzVjjYvZbuVFM.JOYOnLjuM2AN9FUeaKixdrmp6iCv2py8Cj2",
   "enderecoCliente" : "re",
   "saldo" : 100.0
->>>>>>> d9e889a Adicionado metodo formatarNumeroCelular
 } ]

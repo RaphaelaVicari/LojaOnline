@@ -20,7 +20,7 @@ public class Main {
         ProdutoService produtoService = new ProdutoService();
         ClienteService clienteService = new ClienteService();
         EstoqueService estoqueService = new EstoqueService(produtoService);
-        VendaService vendaService = new VendaService(clienteService, produtoService);
+        VendaService vendaService = new VendaService(clienteService);
 
         boolean lojaRodando = true;
 

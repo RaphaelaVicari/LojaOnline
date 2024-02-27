@@ -7,13 +7,10 @@ public class VendaService {
 
     private ClienteService clienteService;
 
-    private ProdutoService produtoService;
-
     private VendaRepository vendaRepository;
 
-    public VendaService(ClienteService clienteService, ProdutoService produtoService) {
+    public VendaService(ClienteService clienteService) {
         this.clienteService = clienteService;
-        this.produtoService = produtoService;
         this.vendaRepository = new VendaRepository();
     }
 

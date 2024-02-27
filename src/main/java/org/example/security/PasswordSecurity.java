@@ -1,11 +1,8 @@
 package org.example.security;
 
-import org.example.repository.ClienteRepository;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordSecurity {
-    private ClienteRepository clienteRepository;
-
 
     public String encriptarSenha(String senha) {
 

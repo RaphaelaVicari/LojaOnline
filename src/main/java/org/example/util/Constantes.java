@@ -8,13 +8,13 @@ public class Constantes {
 
     public static final String cadastroClienteNome = "Insira o nome";
 
-    public static final String cadastroClienteCpf = "Insira um CPF válido (incluir pontuação - ex: 111.111.111-11)";
+    public static final String cadastroClienteCpf = "Insira um CPF válido";
 
     public static final String cadastroClienteData = "Insira a data de nascimento (incluir pontuação - ex: 11/09/2001)";
 
     public static final String cadastroClienteEmail = "Insira um Email válido";
 
-    public static final String cadastroClienteCelular = "Insira o número de celular (incluir pontuação) - ex: (DDD)91010-2020";
+    public static final String cadastroClienteCelular = "Insira o número de celular ou número fixo com DDD(dois digitos, ex: 11912341234)";
 
     public static final String cadastroClienteEndereco = "Insira o endereço";
 

@@ -12,7 +12,6 @@ import org.example.service.VendaService;
 import org.example.util.Constantes;
 
 import java.util.Scanner;
-import javax.xml.crypto.Data;
 
 public class Main {
 
@@ -62,7 +61,11 @@ public class Main {
                     String senhaConfirm = scanner.nextLine();
 
                     cliente.setSenhaCliente(clienteService.cadastroSenha(scanner, senha, senhaConfirm));
-                    clienteService.clienteNovo(cliente);
+                    if(clienteService.clienteNovo(cliente)== null){
+                        System.err.println("Erro! Não foi possivel cadastrar o cliente!");
+                        break;
+                    }
+                    System.out.println("Cliente cadastrado com sucesso");
                     break;
                 //lista de produtos
                 case 2:

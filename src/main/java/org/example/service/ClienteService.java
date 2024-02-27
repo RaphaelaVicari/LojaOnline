@@ -6,11 +6,7 @@ import org.example.security.PasswordSecurity;
 
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
-import java.net.PasswordAuthentication;
-import java.sql.Date;
 import java.text.MessageFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -114,7 +110,7 @@ public class ClienteService {
 
     public Cliente clienteNovo(Cliente cliente) {
 
-        if (!validarCPF(cliente.getCpfCliente())) {
+        if (!validarCPF(cliente)) {
             System.err.println("CPF inválido! Não foi possível cadastrar o cliente.");
             return null;
         }
@@ -188,13 +184,14 @@ public class ClienteService {
     }
 
     // Adicionar o método para validar CPF
-    private boolean validarCPF(String cpf) {
-        CPF cpfUtil = new CPF(cpf);
+    private boolean validarCPF(Cliente cliente) {
+        CPF cpfUtil = new CPF(cliente.getCpfCliente());
 
         if (!cpfUtil.isCPF()) {
             return false;
         }
 
+        cliente.setCpfCliente(cpfUtil.getCPF(true));
         return true;
     }
 
@@ -238,7 +235,7 @@ public class ClienteService {
     // Método para validar número de celular
     public boolean validarNumeroCelular(String numeroCelular) {
         // Formato aceito: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX ou XXXXXXXXXXX
-        String regexNumeroCelular = "(\\(\\d{2}\\)\\d{4,5}-\\d{4})|\\d{11}";
+        String regexNumeroCelular = "(\\(\\d{2}\\)\\d{4,5}-\\d{4})|\\d{11}|\\d{10}";
 
         Pattern pattern = Pattern.compile(regexNumeroCelular);
         Matcher matcher = pattern.matcher(numeroCelular);

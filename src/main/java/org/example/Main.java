@@ -103,6 +103,7 @@ public class Main {
                     case 4:
                         comprarGiftCard(scanner, clienteService);
                         break;
+                    //compras
                     case 5:
                         cliente = pegarClienteCadastrado(scanner, clienteService);
 
@@ -122,70 +123,72 @@ public class Main {
 
                             System.out.printf("SALDO: %.2f\n", cliente.getSaldo());
 
-                            int escolhaVenda = Integer.parseInt(scanner.nextLine());
+                            String escolhaVendaString = scanner.nextLine();
+                            if (!escolhaVendaString.isBlank()) {
+                                int escolhaVenda = Integer.parseInt(escolhaVendaString);
+                                if (escolhaVenda == 4) {
+                                    venda.listarProdutosVenda();
 
-                            if (escolhaVenda == 4) {
-                                venda.listarProdutosVenda();
+                                    if (!confirmarSenhaCliente(clienteService, venda.getClienteVenda(), scanner))
+                                        continue;
 
-                                if (!confirmarSenhaCliente(clienteService, venda.getClienteVenda(), scanner))
-                                    continue;
+                                    if (vendaService.cadastrarVenda(venda) == null) {
+                                        continue;
+                                    }
 
-                                if (vendaService.cadastrarVenda(venda) == null) {
-                                    continue;
+                                    System.out.println("COMPRA EFETUADA COM SUCESSO!");
+                                    break;
                                 }
 
-                                System.out.println("COMPRA EFETUADA COM SUCESSO!");
-                                break;
-                            }
-
-                            if (escolhaVenda == 6) {
-                                for (VendaProduto i : venda.getListaProdutos()) {
-                                    estoqueService.adicionarEstoque(i.getCodigoProduto());
-                                }
-                                break;
-                            }
-
-                            switch (escolhaVenda) {
-                                case 1:
-
-                                    while (true) {
-                                        produtoService.listarTodosProdutos();
-
-                                        System.out.println("Escolha o ID do produto que deseja adicionar ao carrinho");
-                                        System.out.println("Para sair digite -1");
-                                        int idProduto = Integer.parseInt(scanner.nextLine());
-
-                                        if (idProduto == -1) {
-                                            break;
-                                        }
-
-                                        Produto produto = produtoService.consultarProdutoPeloId(idProduto);
-                                        if (produto == null) {
-                                            System.err.println("Erro id produto não existente");
-                                            continue;
-                                        }
-
-                                        if (!estoqueService.removerEstoque(produto)) {
-                                            System.err.println("Erro, estoque indisponível!");
-                                            continue;
-                                        }
-
-                                        venda.adicionarProduto(produto);
+                                if (escolhaVenda == 6) {
+                                    for (VendaProduto i : venda.getListaProdutos()) {
+                                        estoqueService.adicionarEstoque(i.getCodigoProduto());
                                     }
                                     break;
-                                case 2:
-                                    removerProdutoVenda(scanner, estoqueService, venda);
-                                    break;
-                                case 3:
-                                    venda.listarProdutosVenda();
-                                    break;
-                                case 5:
-                                    comprarGiftCard(scanner, clienteService);
-                                    break;
-                                default:
-                                    System.err.println("Opção Invalida");
-                            }
+                                }
 
+                                switch (escolhaVenda) {
+                                    case 1:
+
+                                        while (true) {
+                                            produtoService.listarTodosProdutos();
+
+                                            System.out.println("Escolha o ID do produto que deseja adicionar ao carrinho");
+                                            System.out.println("Para sair digite -1");
+                                            int idProduto = Integer.parseInt(scanner.nextLine());
+
+                                            if (idProduto == -1) {
+                                                break;
+                                            }
+
+                                            Produto produto = produtoService.consultarProdutoPeloId(idProduto);
+                                            if (produto == null) {
+                                                System.err.println("Erro id produto não existente");
+                                                continue;
+                                            }
+
+                                            if (!estoqueService.removerEstoque(produto)) {
+                                                System.err.println("Erro, estoque indisponível!");
+                                                continue;
+                                            }
+
+                                            venda.adicionarProduto(produto);
+                                        }
+                                        break;
+                                    case 2:
+                                        removerProdutoVenda(scanner, estoqueService, venda);
+                                        break;
+                                    case 3:
+                                        venda.listarProdutosVenda();
+                                        break;
+                                    case 5:
+                                        comprarGiftCard(scanner, clienteService);
+                                        break;
+                                    default:
+                                        System.err.println("Opção Invalida");
+                                }
+
+                            }
                         }
 
                         break;
@@ -325,49 +328,54 @@ public class Main {
         Cliente cliente;
         System.out.println(Constantes.compraGiftCard);
         String menuGift = scanner.nextLine();
-        int menuGiftNum = Integer.parseInt(menuGift);
-        double giftCardValor = 0;
+        if (!menuGift.isBlank()) {
 
-        switch (menuGiftNum) {
+            int menuGiftNum = Integer.parseInt(menuGift);
+            double giftCardValor = 0;
 
-            case 1:
-                giftCardValor = 10;
-                break;
+            switch (menuGiftNum) {
 
-            case 2:
-                giftCardValor = 20;
-                break;
-            case 3:
-                giftCardValor = 50;
-                break;
-            case 4:
-                giftCardValor = 100;
-                break;
-            case 5:
-                giftCardValor = 250;
-                break;
-            case 9:
-                break;
-            default:
-                System.err.println("Opção inválida");
-                break;
+                case 1:
+                    giftCardValor = 10;
+                    break;
 
+                case 2:
+                    giftCardValor = 20;
+                    break;
+                case 3:
+                    giftCardValor = 50;
+                    break;
+                case 4:
+                    giftCardValor = 100;
+                    break;
+                case 5:
+                    giftCardValor = 250;
+                    break;
+                case 9:
+                    break;
+                default:
+                    System.err.println("Opção inválida");
+                    break;
+
+            }
+            if (menuGiftNum >= 1 && menuGiftNum <= 5) {
+                System.out.println("R$" + giftCardValor + " serão adicionados na sua conta.\nPara confirmar, insira as informações abaixo:");
+                cliente = pegarClienteCadastrado(scanner, clienteService);
+                if (cliente == null)
+                    return;
+
+                if (!confirmarSenhaCliente(clienteService, cliente, scanner))
+                    return;
+
+                double clienteSaldo = cliente.getSaldo();
+                clienteService.atualizarClienteSaldo(cliente, clienteSaldo += giftCardValor);
+
+                System.out.println("Adicionado Saldo!");
+                System.out.printf("Saldo Atual: %.2f \n", clienteSaldo);
+            }
         }
-        if (menuGiftNum >= 1 && menuGiftNum <= 5) {
-            System.out.println("R$" + giftCardValor + " serão adicionados na sua conta.\nPara confirmar, insira as informações abaixo:");
-            cliente = pegarClienteCadastrado(scanner, clienteService);
-            if (cliente == null)
-                return;
 
-            if (!confirmarSenhaCliente(clienteService, cliente, scanner))
-                return;
 
-            double clienteSaldo = cliente.getSaldo();
-            clienteService.atualizarClienteSaldo(cliente, clienteSaldo += giftCardValor);
-
-            System.out.println("Adicionado Saldo!");
-            System.out.printf("Saldo Atual: %.2f \n", clienteSaldo);
-        }
     }
 
     private static void removerProdutoVenda(Scanner scanner,

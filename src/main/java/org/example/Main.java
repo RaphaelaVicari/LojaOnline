@@ -29,177 +29,186 @@ public class Main {
         while (lojaRodando) {
             System.out.println(Constantes.menu);
             String menu = scanner.nextLine();
-            int menuNum = Integer.parseInt(menu);
-            switch (menuNum) {
-               
-                case 1:
 
-                    Cliente cliente = new Cliente();
+            if (!menu.isBlank()) {
+                int menuNum = Integer.parseInt(menu);
 
-                    System.out.println(Constantes.cadastroClienteNome);
-                    cliente.setNomeCliente(scanner.nextLine());
+                switch (menuNum) {
 
-                    System.out.println(Constantes.cadastroClienteCpf);
-                    cliente.setCpfCliente(scanner.nextLine());
+                    case 1:
 
-                    System.out.println(Constantes.cadastroClienteData);
-                    cliente.setDataNascimentoCliente(scanner.nextLine());
+                        Cliente cliente = new Cliente();
 
-                    System.out.println(Constantes.cadastroClienteEmail);
-                    cliente.setEmailCliente(scanner.nextLine());
+                        System.out.println(Constantes.cadastroClienteNome);
+                        cliente.setNomeCliente(scanner.nextLine());
 
-                    System.out.println(Constantes.cadastroClienteCelular);
-                    cliente.setNumeroCelularCliente(scanner.nextLine());
+                        System.out.println(Constantes.cadastroClienteCpf);
+                        cliente.setCpfCliente(scanner.nextLine());
 
-                    System.out.println(Constantes.cadastroClienteEndereco);
-                    cliente.setEnderecoCliente(scanner.nextLine());
+                        System.out.println(Constantes.cadastroClienteData);
+                        cliente.setDataNascimentoCliente(scanner.nextLine());
 
-                    System.out.println(Constantes.cadastroClienteSenha);
-                    String senha = scanner.nextLine();
+                        System.out.println(Constantes.cadastroClienteEmail);
+                        cliente.setEmailCliente(scanner.nextLine());
 
-                    System.out.println(Constantes.cadastroClienteSenhaConfirma);
-                    String senhaConfirm = scanner.nextLine();
+                        System.out.println(Constantes.cadastroClienteCelular);
+                        cliente.setNumeroCelularCliente(scanner.nextLine());
 
-                    cliente.setSenhaCliente(clienteService.cadastroSenha(scanner, senha, senhaConfirm));
-                    if(clienteService.clienteNovo(cliente)== null){
-                        System.err.println("Erro! Não foi possivel cadastrar o cliente!");
+                        System.out.println(Constantes.cadastroClienteEndereco);
+                        cliente.setEnderecoCliente(scanner.nextLine());
+
+                        System.out.println(Constantes.cadastroClienteSenha);
+                        String senha = scanner.nextLine();
+
+                        System.out.println(Constantes.cadastroClienteSenhaConfirma);
+                        String senhaConfirm = scanner.nextLine();
+
+                        cliente.setSenhaCliente(clienteService.cadastroSenha(scanner, senha, senhaConfirm));
+                        if (clienteService.clienteNovo(cliente) == null) {
+                            System.err.println("Erro! Não foi possivel cadastrar o cliente!");
+                            break;
+                        }
+                        System.out.println("Cliente cadastrado com sucesso");
                         break;
-                    }
-                    System.out.println("Cliente cadastrado com sucesso");
-                    break;
-                //lista de produtos
-                case 2:
-                    produtoService.listarTodosProdutos();
-                    break;
-
-                //status da conta
-                case 3:
-
-                    System.out.println(Constantes.statusCliente);
-
-                    cliente = pegarClienteCadastrado(scanner, clienteService);
-                    if (cliente == null)
+                    //lista de produtos
+                    case 2:
+                        produtoService.listarTodosProdutos();
                         break;
 
-                    if (!confirmarSenhaCliente(clienteService, cliente, scanner))
+                    //status da conta
+                    case 3:
+
+                        System.out.println(Constantes.statusCliente);
+
+                        cliente = pegarClienteCadastrado(scanner, clienteService);
+                        if (cliente == null)
+                            break;
+
+                        if (!confirmarSenhaCliente(clienteService, cliente, scanner))
+                            break;
+
+                        System.out.println("Senha correta!");
+
+                        String cabecalho = "NOME CLIENTE: " + cliente.getNomeCliente() + "\n" +
+                                "CPF: " + cliente.getCpfCliente() + "\n" +
+                                "SALDO: R$" + String.format("%.2f", cliente.getSaldo()) + "\n" +
+                                "ENDEREÇO: " + cliente.getEnderecoCliente() + "\n" +
+                                "NÚMERO DE CELULAR: " + cliente.getNumeroCelularCliente() + "\n" +
+                                "E-MAIL: " + cliente.getEmailCliente() + "\n" +
+                                "DATA DE NASCIMENTO: " + cliente.getDataNascimentoCliente();
+                        System.out.println(cabecalho);
                         break;
 
-                    System.out.println("Senha correta!");
-
-                    String cabecalho = "NOME CLIENTE: " + cliente.getNomeCliente() + "\n" +
-                            "CPF: " + cliente.getCpfCliente() + "\n" +
-                            "SALDO: R$" + String.format("%.2f", cliente.getSaldo()) + "\n" +
-                            "ENDEREÇO: " + cliente.getEnderecoCliente() + "\n" +
-                            "NÚMERO DE CELULAR: " + cliente.getNumeroCelularCliente() + "\n" +
-                            "E-MAIL: " + cliente.getEmailCliente() + "\n" +
-                            "DATA DE NASCIMENTO: " + cliente.getDataNascimentoCliente();
-                    System.out.println(cabecalho);
-                    break;
-
-                //giftCard
-                case 4:
-                    comprarGiftCard(scanner, clienteService);
-                    break;
-                case 5:
-                    cliente = pegarClienteCadastrado(scanner, clienteService);
-
-                    if (cliente == null) {
+                    //giftCard
+                    case 4:
+                        comprarGiftCard(scanner, clienteService);
                         break;
-                    }
+                    case 5:
+                        cliente = pegarClienteCadastrado(scanner, clienteService);
 
-                    Venda venda = new Venda(cliente);
-
-                    while (true) {
-                        System.out.println("(1) Adicionar Produtos");
-                        System.out.println("(2) Remover Produtos");
-                        System.out.println("(3) Listar Carrinho");
-                        System.out.println("(4) Finalizar Venda");
-                        System.out.println("(5) Comprar GiftCard");
-                        System.out.println("(6) Voltar para o menu anterior");
-
-                        System.out.printf("SALDO: %.2f\n", cliente.getSaldo());
-
-                        int escolhaVenda = Integer.parseInt(scanner.nextLine());
-
-                        if (escolhaVenda == 4) {
-                            venda.listarProdutosVenda();
-
-                            if (!confirmarSenhaCliente(clienteService, venda.getClienteVenda(), scanner))
-                                continue;
-
-                            if (vendaService.cadastrarVenda(venda) == null) {
-                                continue;
-                            }
-
-                            System.out.println("COMPRA EFETUADA COM SUCESSO!");
+                        if (cliente == null) {
                             break;
                         }
 
-                        if (escolhaVenda == 6) {
-                            for (VendaProduto i : venda.getListaProdutos()) {
-                                estoqueService.adicionarEstoque(i.getCodigoProduto());
+                        Venda venda = new Venda(cliente);
+
+                        while (true) {
+                            System.out.println("(1) Adicionar Produtos");
+                            System.out.println("(2) Remover Produtos");
+                            System.out.println("(3) Listar Carrinho");
+                            System.out.println("(4) Finalizar Venda");
+                            System.out.println("(5) Comprar GiftCard");
+                            System.out.println("(6) Voltar para o menu anterior");
+
+                            System.out.printf("SALDO: %.2f\n", cliente.getSaldo());
+
+                            int escolhaVenda = Integer.parseInt(scanner.nextLine());
+
+                            if (escolhaVenda == 4) {
+                                venda.listarProdutosVenda();
+
+                                if (!confirmarSenhaCliente(clienteService, venda.getClienteVenda(), scanner))
+                                    continue;
+
+                                if (vendaService.cadastrarVenda(venda) == null) {
+                                    continue;
+                                }
+
+                                System.out.println("COMPRA EFETUADA COM SUCESSO!");
+                                break;
                             }
-                            break;
-                        }
 
-                        switch (escolhaVenda) {
-                            case 1:
-
-                                while (true) {
-                                    produtoService.listarTodosProdutos();
-
-                                    System.out.println("Escolha o ID do produto que deseja adicionar ao carrinho");
-                                    System.out.println("Para sair digite -1");
-                                    int idProduto = Integer.parseInt(scanner.nextLine());
-
-                                    if (idProduto == -1) {
-                                        break;
-                                    }
-
-                                    Produto produto = produtoService.consultarProdutoPeloId(idProduto);
-                                    if (produto == null) {
-                                        System.err.println("Erro id produto não existente");
-                                        continue;
-                                    }
-
-                                    if (!estoqueService.removerEstoque(produto)) {
-                                        System.err.println("Erro, estoque indisponível!");
-                                        continue;
-                                    }
-
-                                    venda.adicionarProduto(produto);
+                            if (escolhaVenda == 6) {
+                                for (VendaProduto i : venda.getListaProdutos()) {
+                                    estoqueService.adicionarEstoque(i.getCodigoProduto());
                                 }
                                 break;
-                            case 2:
-                                removerProdutoVenda(scanner, estoqueService, venda);
-                                break;
-                            case 3:
-                                venda.listarProdutosVenda();
-                                break;
-                            case 5:
-                                comprarGiftCard(scanner, clienteService);
-                                break;
-                            default:
-                                System.err.println("Opção Invalida");
+                            }
+
+                            switch (escolhaVenda) {
+                                case 1:
+
+                                    while (true) {
+                                        produtoService.listarTodosProdutos();
+
+                                        System.out.println("Escolha o ID do produto que deseja adicionar ao carrinho");
+                                        System.out.println("Para sair digite -1");
+                                        int idProduto = Integer.parseInt(scanner.nextLine());
+
+                                        if (idProduto == -1) {
+                                            break;
+                                        }
+
+                                        Produto produto = produtoService.consultarProdutoPeloId(idProduto);
+                                        if (produto == null) {
+                                            System.err.println("Erro id produto não existente");
+                                            continue;
+                                        }
+
+                                        if (!estoqueService.removerEstoque(produto)) {
+                                            System.err.println("Erro, estoque indisponível!");
+                                            continue;
+                                        }
+
+                                        venda.adicionarProduto(produto);
+                                    }
+                                    break;
+                                case 2:
+                                    removerProdutoVenda(scanner, estoqueService, venda);
+                                    break;
+                                case 3:
+                                    venda.listarProdutosVenda();
+                                    break;
+                                case 5:
+                                    comprarGiftCard(scanner, clienteService);
+                                    break;
+                                default:
+                                    System.err.println("Opção Invalida");
+                            }
+
                         }
 
-                    }
-                    
-                    break;
+                        break;
 
-                case 6:
-                    menuAdministrativo(scanner, produtoService, estoqueService);
-                    break;
-                //encerrar programa
-                case 9:
-                    lojaRodando = false;
-                    System.out.println("Programa encerrado!!!");
-                    break;
+                    case 6:
+                        menuAdministrativo(scanner, produtoService, estoqueService);
+                        break;
+                    //encerrar programa
+                    case 9:
+                        lojaRodando = false;
+                        System.out.println("Programa encerrado!!!");
+                        break;
 
-                default:
-                    System.out.println("Opção inválida");
-                    break;
+                    default:
+                        System.out.println("Opção inválida");
+                        break;
+                }
+            } else {
+                System.out.println("Escolha uma opção");
+
             }
+
+
         }
     }
 

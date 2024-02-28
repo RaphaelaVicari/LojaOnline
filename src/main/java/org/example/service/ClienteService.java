@@ -4,8 +4,6 @@ import org.example.model.Cliente;
 import org.example.repository.ClienteRepository;
 import org.example.security.PasswordSecurity;
 
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 import java.text.MessageFormat;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -99,13 +97,6 @@ public class ClienteService {
             }
         }
 
-        public DefaultFormatterFactory getFormat() {
-            try {
-                return new DefaultFormatterFactory(new MaskFormatter(Formato));
-            } catch (Exception e) {
-                return null;
-            }
-        }
     }
 
     public Cliente clienteNovo(Cliente cliente) {

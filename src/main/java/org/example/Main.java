@@ -31,7 +31,7 @@ public class Main {
             System.out.println(Constantes.menu);
             String menu = scanner.nextLine();
 
-            if (!FuncoesUtil.EhNumero(menu)) {
+            if (!FuncoesUtil.ehNumero(menu)) {
                 System.err.println("Opção Inválida");
                 continue;
             }
@@ -130,7 +130,7 @@ public class Main {
 
                         String escolhaVendaString = scanner.nextLine();
 
-                        if (!FuncoesUtil.EhNumero(escolhaVendaString)) {
+                        if (!FuncoesUtil.ehNumero(escolhaVendaString)) {
                             System.err.println("Opção Inválida");
                             continue;
                         }
@@ -168,7 +168,7 @@ public class Main {
 
                                     String produtoCodigo = scanner.nextLine();
 
-                                    if (!FuncoesUtil.EhNumero(produtoCodigo)) {
+                                    if (!FuncoesUtil.ehNumero(produtoCodigo)) {
                                         System.err.println("Opção Inválida");
                                         continue;
                                     }
@@ -252,7 +252,7 @@ public class Main {
 
             String menuOpcao = scanner.nextLine();
 
-            if (!FuncoesUtil.EhNumero(menuOpcao)) {
+            if (!FuncoesUtil.ehNumero(menuOpcao)) {
                 System.err.println("Opção Inválida");
                 continue;
             }
@@ -271,7 +271,7 @@ public class Main {
 
                         String idProduto = scanner.nextLine();
 
-                        if (!FuncoesUtil.EhNumero(idProduto)) {
+                        if (!FuncoesUtil.ehNumero(idProduto)) {
                             System.err.println("Opção Inválida");
                             continue;
                         }
@@ -297,7 +297,7 @@ public class Main {
                         System.out.println("Para sair digite -1");
 
                         String idProduto = scanner.nextLine();
-                        if (!FuncoesUtil.EhNumero(idProduto)) {
+                        if (!FuncoesUtil.ehNumero(idProduto)) {
                             System.err.println("Opção Inválida");
                             continue;
                         }
@@ -310,7 +310,7 @@ public class Main {
                         System.out.println("Digite a quantidade do estoque que deseja atribuir ao produto");
                         String quantidadeStr = scanner.nextLine();
 
-                        if (!FuncoesUtil.EhNumero(quantidadeStr)) {
+                        if (!FuncoesUtil.ehNumero(quantidadeStr)) {
                             System.err.println("Quantidade inválida, somente números");
                             continue;
                         }
@@ -344,7 +344,7 @@ public class Main {
             System.out.println("Para sair digite -1");
             String codigoProduto = scanner.nextLine();
 
-            if (!FuncoesUtil.EhNumero(codigoProduto)) {
+            if (!FuncoesUtil.ehNumero(codigoProduto)) {
                 System.err.println("Código inválido, somente números");
                 continue;
             }
@@ -364,7 +364,7 @@ public class Main {
             System.out.println(Constantes.cadastroProdutoValor);
             String produtoValor = scanner.nextLine();
 
-            if (!FuncoesUtil.EhNumero(produtoValor)) {
+            if (!FuncoesUtil.ehNumero(produtoValor)) {
                 System.err.println("Preço do produto inválido, somente números");
                 continue;
             }
@@ -375,7 +375,7 @@ public class Main {
             System.out.println(Constantes.cadastroProdutoEstoque);
             String produtoEstoque = scanner.nextLine();
 
-            if (!FuncoesUtil.EhNumero(produtoEstoque)) {
+            if (!FuncoesUtil.ehNumero(produtoEstoque)) {
                 System.err.println("Preço do produto inválido, somente números");
                 continue;
             }
@@ -393,7 +393,7 @@ public class Main {
 
                 String repetirCadastroStr = scanner.nextLine();
 
-                if (!FuncoesUtil.EhNumero(repetirCadastroStr)) {
+                if (!FuncoesUtil.ehNumero(repetirCadastroStr)) {
                     System.err.println("Opção inválida, somente números");
                     continue;
                 }
@@ -418,7 +418,7 @@ public class Main {
         System.out.println(Constantes.compraGiftCard);
         String menuGift = scanner.nextLine();
 
-        if (!FuncoesUtil.EhNumero(menuGift)) {
+        if (!FuncoesUtil.ehNumero(menuGift)) {
             System.err.println("Opção Inválida");
             return;
         }
@@ -480,7 +480,7 @@ public class Main {
 
             String idProdutoRemover = scanner.nextLine();
 
-            if (!FuncoesUtil.EhNumero(idProdutoRemover)) {
+            if (!FuncoesUtil.ehNumero(idProdutoRemover)) {
                 System.err.println("Código produto inválido, somente números");
                 return;
             }

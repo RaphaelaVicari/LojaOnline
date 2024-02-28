@@ -6,6 +6,8 @@ public class FuncoesUtil {
 
     private static final Pattern NUMBER_PATTERN = Pattern.compile("-?\\d+(\\.\\d+)?");
 
+    private FuncoesUtil(){}
+
     public static String formatarColuna(String nomeColuna, int tamanhoColuna) {
         if (nomeColuna.length() > tamanhoColuna) {
             nomeColuna = nomeColuna.substring(0, tamanhoColuna);
@@ -15,7 +17,7 @@ public class FuncoesUtil {
     }
 
 
-    public static boolean EhNumero(String entrada) {
+    public static boolean ehNumero(String entrada) {
         if (entrada == null) {
             return false;
         }

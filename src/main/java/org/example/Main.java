@@ -10,6 +10,7 @@ import org.example.service.EstoqueService;
 import org.example.service.ProdutoService;
 import org.example.service.VendaService;
 import org.example.util.Constantes;
+import org.example.util.FuncoesUtil;
 
 import java.util.Scanner;
 
@@ -30,189 +31,201 @@ public class Main {
             System.out.println(Constantes.menu);
             String menu = scanner.nextLine();
 
-            if (!menu.isBlank()) {
-                int menuNum = Integer.parseInt(menu);
-
-                switch (menuNum) {
-
-                    case 1:
-
-                        Cliente cliente = new Cliente();
-
-                        System.out.println(Constantes.cadastroClienteNome);
-                        cliente.setNomeCliente(scanner.nextLine());
-
-                        System.out.println(Constantes.cadastroClienteCpf);
-                        cliente.setCpfCliente(scanner.nextLine());
-
-                        System.out.println(Constantes.cadastroClienteData);
-                        cliente.setDataNascimentoCliente(scanner.nextLine());
-
-                        System.out.println(Constantes.cadastroClienteEmail);
-                        cliente.setEmailCliente(scanner.nextLine());
-
-                        System.out.println(Constantes.cadastroClienteCelular);
-                        cliente.setNumeroCelularCliente(scanner.nextLine());
-
-                        System.out.println(Constantes.cadastroClienteEndereco);
-                        cliente.setEnderecoCliente(scanner.nextLine());
-
-                        System.out.println(Constantes.cadastroClienteSenha);
-                        String senha = scanner.nextLine();
-
-                        System.out.println(Constantes.cadastroClienteSenhaConfirma);
-                        String senhaConfirm = scanner.nextLine();
-
-                        cliente.setSenhaCliente(clienteService.cadastroSenha(scanner, senha, senhaConfirm));
-                        if (clienteService.clienteNovo(cliente) == null) {
-                            System.err.println("Erro! Não foi possivel cadastrar o cliente!");
-                            break;
-                        }
-                        System.out.println("Cliente cadastrado com sucesso");
-                        break;
-                    //lista de produtos
-                    case 2:
-                        produtoService.listarTodosProdutos();
-                        break;
-
-                    //status da conta
-                    case 3:
-
-                        System.out.println(Constantes.statusCliente);
-
-                        cliente = pegarClienteCadastrado(scanner, clienteService);
-                        if (cliente == null)
-                            break;
-
-                        if (!confirmarSenhaCliente(clienteService, cliente, scanner))
-                            break;
-
-                        System.out.println("Senha correta!");
-
-                        String cabecalho = "NOME CLIENTE: " + cliente.getNomeCliente() + "\n" +
-                                "CPF: " + cliente.getCpfCliente() + "\n" +
-                                "SALDO: R$" + String.format("%.2f", cliente.getSaldo()) + "\n" +
-                                "ENDEREÇO: " + cliente.getEnderecoCliente() + "\n" +
-                                "NÚMERO DE CELULAR: " + cliente.getNumeroCelularCliente() + "\n" +
-                                "E-MAIL: " + cliente.getEmailCliente() + "\n" +
-                                "DATA DE NASCIMENTO: " + cliente.getDataNascimentoCliente();
-                        System.out.println(cabecalho);
-                        break;
-
-                    //giftCard
-                    case 4:
-                        comprarGiftCard(scanner, clienteService);
-                        break;
-                    //compras
-                    case 5:
-                        cliente = pegarClienteCadastrado(scanner, clienteService);
-
-                        if (cliente == null) {
-                            break;
-                        }
-
-                        Venda venda = new Venda(cliente);
-
-                        while (true) {
-                            System.out.println("(1) Adicionar Produtos");
-                            System.out.println("(2) Remover Produtos");
-                            System.out.println("(3) Listar Carrinho");
-                            System.out.println("(4) Finalizar Venda");
-                            System.out.println("(5) Comprar GiftCard");
-                            System.out.println("(6) Voltar para o menu anterior");
-
-                            System.out.printf("SALDO: %.2f\n", cliente.getSaldo());
-
-                            String escolhaVendaString = scanner.nextLine();
-                            if (!escolhaVendaString.isBlank()) {
-                                int escolhaVenda = Integer.parseInt(escolhaVendaString);
-                                if (escolhaVenda == 4) {
-                                    venda.listarProdutosVenda();
-
-                                    if (!confirmarSenhaCliente(clienteService, venda.getClienteVenda(), scanner))
-                                        continue;
-
-                                    if (vendaService.cadastrarVenda(venda) == null) {
-                                        continue;
-                                    }
-
-                                    System.out.println("COMPRA EFETUADA COM SUCESSO!");
-                                    break;
-                                }
-
-                                if (escolhaVenda == 6) {
-                                    for (VendaProduto i : venda.getListaProdutos()) {
-                                        estoqueService.adicionarEstoque(i.getCodigoProduto());
-                                    }
-                                    break;
-                                }
-
-                                switch (escolhaVenda) {
-                                    case 1:
-
-                                        while (true) {
-                                            produtoService.listarTodosProdutos();
-
-                                            System.out.println("Escolha o ID do produto que deseja adicionar ao carrinho");
-                                            System.out.println("Para sair digite -1");
-                                            int idProduto = Integer.parseInt(scanner.nextLine());
-
-                                            if (idProduto == -1) {
-                                                break;
-                                            }
-
-                                            Produto produto = produtoService.consultarProdutoPeloId(idProduto);
-                                            if (produto == null) {
-                                                System.err.println("Erro id produto não existente");
-                                                continue;
-                                            }
-
-                                            if (!estoqueService.removerEstoque(produto)) {
-                                                System.err.println("Erro, estoque indisponível!");
-                                                continue;
-                                            }
-
-                                            venda.adicionarProduto(produto);
-                                        }
-                                        break;
-                                    case 2:
-                                        removerProdutoVenda(scanner, estoqueService, venda);
-                                        break;
-                                    case 3:
-                                        venda.listarProdutosVenda();
-                                        break;
-                                    case 5:
-                                        comprarGiftCard(scanner, clienteService);
-                                        break;
-                                    default:
-                                        System.err.println("Opção Invalida");
-                                }
-
-                            }
-                        }
-
-                        break;
-
-                    case 6:
-                        menuAdministrativo(scanner, produtoService, estoqueService);
-                        break;
-                    //encerrar programa
-                    case 9:
-                        lojaRodando = false;
-                        System.out.println("Programa encerrado!!!");
-                        break;
-
-                    default:
-                        System.out.println("Opção inválida");
-                        break;
-                }
-            } else {
-                System.out.println("Escolha uma opção");
-
+            if (!FuncoesUtil.EhNumero(menu)) {
+                System.err.println("Opção Inválida");
+                continue;
             }
 
+            int menuNum = Integer.parseInt(menu);
 
+            switch (menuNum) {
+
+                case 1:
+
+                    Cliente cliente = new Cliente();
+
+                    System.out.println(Constantes.cadastroClienteNome);
+                    cliente.setNomeCliente(scanner.nextLine());
+
+                    System.out.println(Constantes.cadastroClienteCpf);
+                    cliente.setCpfCliente(scanner.nextLine());
+
+                    System.out.println(Constantes.cadastroClienteData);
+                    cliente.setDataNascimentoCliente(scanner.nextLine());
+
+                    System.out.println(Constantes.cadastroClienteEmail);
+                    cliente.setEmailCliente(scanner.nextLine());
+
+                    System.out.println(Constantes.cadastroClienteCelular);
+                    cliente.setNumeroCelularCliente(scanner.nextLine());
+
+                    System.out.println(Constantes.cadastroClienteEndereco);
+                    cliente.setEnderecoCliente(scanner.nextLine());
+
+                    System.out.println(Constantes.cadastroClienteSenha);
+                    String senha = scanner.nextLine();
+
+                    System.out.println(Constantes.cadastroClienteSenhaConfirma);
+                    String senhaConfirm = scanner.nextLine();
+
+                    cliente.setSenhaCliente(clienteService.cadastroSenha(scanner, senha, senhaConfirm));
+                    if (clienteService.clienteNovo(cliente) == null) {
+                        System.err.println("Erro! Não foi possivel cadastrar o cliente!");
+                        break;
+                    }
+                    System.out.println("Cliente cadastrado com sucesso");
+                    break;
+                //lista de produtos
+                case 2:
+                    produtoService.listarTodosProdutos();
+                    break;
+
+                //status da conta
+                case 3:
+
+                    System.out.println(Constantes.statusCliente);
+
+                    cliente = pegarClienteCadastrado(scanner, clienteService);
+                    if (cliente == null)
+                        break;
+
+                    if (!confirmarSenhaCliente(clienteService, cliente, scanner))
+                        break;
+
+                    System.out.println("Senha correta!");
+
+                    String cabecalho = "NOME CLIENTE: " + cliente.getNomeCliente() + "\n" +
+                            "CPF: " + cliente.getCpfCliente() + "\n" +
+                            "SALDO: R$" + String.format("%.2f", cliente.getSaldo()) + "\n" +
+                            "ENDEREÇO: " + cliente.getEnderecoCliente() + "\n" +
+                            "NÚMERO DE CELULAR: " + cliente.getNumeroCelularCliente() + "\n" +
+                            "E-MAIL: " + cliente.getEmailCliente() + "\n" +
+                            "DATA DE NASCIMENTO: " + cliente.getDataNascimentoCliente();
+                    System.out.println(cabecalho);
+                    break;
+
+                //giftCard
+                case 4:
+                    comprarGiftCard(scanner, clienteService);
+                    break;
+                //compras
+                case 5:
+                    cliente = pegarClienteCadastrado(scanner, clienteService);
+
+                    if (cliente == null) {
+                        break;
+                    }
+
+                    Venda venda = new Venda(cliente);
+
+                    while (true) {
+                        System.out.println("(1) Adicionar Produtos");
+                        System.out.println("(2) Remover Produtos");
+                        System.out.println("(3) Listar Carrinho");
+                        System.out.println("(4) Finalizar Venda");
+                        System.out.println("(5) Comprar GiftCard");
+                        System.out.println("(6) Voltar para o menu anterior");
+
+                        System.out.printf("SALDO: %.2f\n", cliente.getSaldo());
+
+                        String escolhaVendaString = scanner.nextLine();
+
+                        if (!FuncoesUtil.EhNumero(escolhaVendaString)) {
+                            System.err.println("Opção Inválida");
+                            continue;
+                        }
+
+                        int escolhaVenda = Integer.parseInt(escolhaVendaString);
+                        if (escolhaVenda == 4) {
+                            venda.listarProdutosVenda();
+
+                            if (!confirmarSenhaCliente(clienteService, venda.getClienteVenda(), scanner))
+                                continue;
+
+                            if (vendaService.cadastrarVenda(venda) == null) {
+                                continue;
+                            }
+
+                            System.out.println("COMPRA EFETUADA COM SUCESSO!");
+                            break;
+                        }
+
+                        if (escolhaVenda == 6) {
+                            for (VendaProduto i : venda.getListaProdutos()) {
+                                estoqueService.adicionarEstoque(i.getCodigoProduto());
+                            }
+                            break;
+                        }
+
+                        switch (escolhaVenda) {
+                            case 1:
+
+                                while (true) {
+                                    produtoService.listarTodosProdutos();
+
+                                    System.out.println("Escolha o ID do produto que deseja adicionar ao carrinho");
+                                    System.out.println("Para sair digite -1");
+
+                                    String produtoCodigo = scanner.nextLine();
+
+                                    if (!FuncoesUtil.EhNumero(produtoCodigo)) {
+                                        System.err.println("Opção Inválida");
+                                        continue;
+                                    }
+
+                                    int idProduto = Integer.parseInt(produtoCodigo);
+
+                                    if (idProduto == -1) {
+                                        break;
+                                    }
+
+                                    Produto produto = produtoService.consultarProdutoPeloId(idProduto);
+                                    if (produto == null) {
+                                        System.err.println("Erro id produto não existente");
+                                        continue;
+                                    }
+
+                                    if (!estoqueService.removerEstoque(produto)) {
+                                        System.err.println("Erro, estoque indisponível!");
+                                        continue;
+                                    }
+
+                                    venda.adicionarProduto(produto);
+                                }
+                                break;
+                            case 2:
+                                removerProdutoVenda(scanner, estoqueService, venda);
+                                break;
+                            case 3:
+                                venda.listarProdutosVenda();
+                                break;
+                            case 5:
+                                comprarGiftCard(scanner, clienteService);
+                                break;
+                            default:
+                                System.err.println("Opção Invalida");
+                        }
+
+                    }
+
+                    break;
+
+                case 6:
+                    menuAdministrativo(scanner, produtoService, estoqueService);
+                    break;
+                //encerrar programa
+                case 9:
+                    lojaRodando = false;
+                    System.out.println("Programa encerrado!!!");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
         }
+
+
     }
 
     private static void menuAdministrativo(Scanner scanner, ProdutoService produtoService, EstoqueService estoqueService) {
@@ -237,37 +250,72 @@ public class Main {
             System.out.println("(3) Alterar quantidade de estoque");
             System.out.println("(4) Voltar para menu");
 
-            int lerOpcao = Integer.parseInt(scanner.nextLine());
+            String menuOpcao = scanner.nextLine();
+
+            if (!FuncoesUtil.EhNumero(menuOpcao)) {
+                System.err.println("Opção Inválida");
+                continue;
+            }
+
+            int lerOpcao = Integer.parseInt(menuOpcao);
             switch (lerOpcao) {
 
                 case 1:
                     cadastrarNovoProdutoAdm(scanner, produtoService);
                     break;
                 case 2:
-                    produtoService.listarTodosProdutos();
-                    System.out.println("Digite o ID do produto que deseja remover!");
-                    long codigoDoProduto = Long.parseLong(scanner.nextLine());
+                    while(true) {
+                        produtoService.listarTodosProdutos();
+                        System.out.println("Digite o ID do produto que deseja remover!");
 
-                    if (produtoService.removerProduto(codigoDoProduto) == null) {
-                        System.err.println("Erro ao remover produto!");
+                        String idProduto = scanner.nextLine();
+
+                        if (!FuncoesUtil.EhNumero(idProduto)) {
+                            System.err.println("Opção Inválida");
+                            continue;
+                        }
+
+                        long codigoDoProduto = Long.parseLong(idProduto);
+
+                        if (produtoService.removerProduto(codigoDoProduto) == null) {
+                            System.err.println("Erro ao remover produto!");
+                            break;
+                        }
+                        System.out.println("Produto removido com sucesso!");
                         break;
                     }
-                    System.out.println("Produto removido com sucesso!");
                     break;
                 case 3:
-                    produtoService.listarTodosProdutos();
-                    System.out.println("Digite o ID do produto que deseja alterar a quantidade de estoque!");
-                    long codigo = Long.parseLong(scanner.nextLine());
+                    while (true) {
+                        produtoService.listarTodosProdutos();
+                        System.out.println("Digite o ID do produto que deseja alterar a quantidade de estoque!");
 
-                    System.out.println("Digite a quantidade do estoque que deseja atribuir ao produto");
-                    int estoqueQuantidadeAlterada = Integer.parseInt(scanner.nextLine());
+                        String idProduto = scanner.nextLine();
+                        if (!FuncoesUtil.EhNumero(idProduto)) {
+                            System.err.println("Opção Inválida");
+                            continue;
+                        }
+                        long codigo = Long.parseLong(idProduto);
 
-                    if (!estoqueService.alterarQuantidadeEstoque(codigo, estoqueQuantidadeAlterada)) {
 
-                        System.err.println("Erro, não foi possível realizar alteração no estoque do produto!");
+                        System.out.println("Digite a quantidade do estoque que deseja atribuir ao produto");
+                        String quantidadeStr = scanner.nextLine();
+
+                        if (!FuncoesUtil.EhNumero(quantidadeStr)) {
+                            System.err.println("Quantidade inválida, somente números");
+                            continue;
+                        }
+
+                        int estoqueQuantidadeAlterada = Integer.parseInt(quantidadeStr);
+
+                        if (!estoqueService.alterarQuantidadeEstoque(codigo, estoqueQuantidadeAlterada)) {
+                            System.err.println("Erro, não foi possível realizar alteração no estoque do produto!");
+                            break;
+                        }
+
+                        System.out.println("Alteração do estoque realizada com sucesso!");
                         break;
                     }
-                    System.out.println("Alteração do estoque realizada com sucesso!");
                     break;
                 case 4:
                     return;
@@ -284,7 +332,13 @@ public class Main {
             Produto produto = new Produto();
 
             System.out.println(Constantes.cadastroProdutoCodigo);
-            produto.setCodigoProduto(Long.parseLong(scanner.nextLine()));
+            String codigoProduto = scanner.nextLine();
+
+            if (!FuncoesUtil.EhNumero(codigoProduto)) {
+                System.err.println("Código inválido, somente números");
+                continue;
+            }
+            produto.setCodigoProduto(Long.parseLong(codigoProduto));
 
             System.out.println(Constantes.cadastroProdutoNome);
             produto.setNomeProduto(scanner.nextLine());
@@ -294,11 +348,23 @@ public class Main {
 
             System.out.println(Constantes.cadastroProdutoValor);
             String produtoValor = scanner.nextLine();
+
+            if (!FuncoesUtil.EhNumero(produtoValor)) {
+                System.err.println("Preço do produto inválido, somente números");
+                continue;
+            }
+
             double valor = Double.parseDouble(produtoValor);
             produto.setPrecoProduto(valor);
 
             System.out.println(Constantes.cadastroProdutoEstoque);
             String produtoEstoque = scanner.nextLine();
+
+            if (!FuncoesUtil.EhNumero(produtoEstoque)) {
+                System.err.println("Preço do produto inválido, somente números");
+                continue;
+            }
+
             int estoque = Integer.parseInt(produtoEstoque);
             produto.setEstoqueProduto(estoque);
 
@@ -309,7 +375,15 @@ public class Main {
 
             boolean repetirCadastro = true;
             while (repetirCadastro) {
-                int novoProduto = Integer.parseInt(scanner.nextLine());
+
+                String repetirCadastroStr = scanner.nextLine();
+
+                if (!FuncoesUtil.EhNumero(repetirCadastroStr)) {
+                    System.err.println("Opção inválida, somente números");
+                    continue;
+                }
+
+                int novoProduto = Integer.parseInt(repetirCadastroStr);
                 if (novoProduto < 0 || novoProduto > 1) {
                     System.out.println("Opção inválida");
                 }
@@ -328,53 +402,55 @@ public class Main {
         Cliente cliente;
         System.out.println(Constantes.compraGiftCard);
         String menuGift = scanner.nextLine();
-        if (!menuGift.isBlank()) {
 
-            int menuGiftNum = Integer.parseInt(menuGift);
-            double giftCardValor = 0;
-
-            switch (menuGiftNum) {
-
-                case 1:
-                    giftCardValor = 10;
-                    break;
-
-                case 2:
-                    giftCardValor = 20;
-                    break;
-                case 3:
-                    giftCardValor = 50;
-                    break;
-                case 4:
-                    giftCardValor = 100;
-                    break;
-                case 5:
-                    giftCardValor = 250;
-                    break;
-                case 9:
-                    break;
-                default:
-                    System.err.println("Opção inválida");
-                    break;
-
-            }
-            if (menuGiftNum >= 1 && menuGiftNum <= 5) {
-                System.out.println("R$" + giftCardValor + " serão adicionados na sua conta.\nPara confirmar, insira as informações abaixo:");
-                cliente = pegarClienteCadastrado(scanner, clienteService);
-                if (cliente == null)
-                    return;
-
-                if (!confirmarSenhaCliente(clienteService, cliente, scanner))
-                    return;
-
-                double clienteSaldo = cliente.getSaldo();
-                clienteService.atualizarClienteSaldo(cliente, clienteSaldo += giftCardValor);
-
-                System.out.println("Adicionado Saldo!");
-                System.out.printf("Saldo Atual: %.2f \n", clienteSaldo);
-            }
+        if (!FuncoesUtil.EhNumero(menuGift)) {
+            System.err.println("Opção Inválida");
+            return;
         }
 
+        int menuGiftNum = Integer.parseInt(menuGift);
+        double giftCardValor = 0;
+
+        switch (menuGiftNum) {
+
+            case 1:
+                giftCardValor = 10;
+                break;
+
+            case 2:
+                giftCardValor = 20;
+                break;
+            case 3:
+                giftCardValor = 50;
+                break;
+            case 4:
+                giftCardValor = 100;
+                break;
+            case 5:
+                giftCardValor = 250;
+                break;
+            case 9:
+                break;
+            default:
+                System.err.println("Opção inválida");
+                break;
+
+        }
+        if (menuGiftNum >= 1 && menuGiftNum <= 5) {
+            System.out.println("R$" + giftCardValor + " serão adicionados na sua conta.\nPara confirmar, insira as informações abaixo:");
+            cliente = pegarClienteCadastrado(scanner, clienteService);
+            if (cliente == null)
+                return;
+
+            if (!confirmarSenhaCliente(clienteService, cliente, scanner))
+                return;
+
+            double clienteSaldo = cliente.getSaldo();
+            clienteService.atualizarClienteSaldo(cliente, clienteSaldo += giftCardValor);
+
+            System.out.println("Adicionado Saldo!");
+            System.out.printf("Saldo Atual: %.2f \n", clienteSaldo);
+        }
 
     }
 
@@ -386,7 +462,15 @@ public class Main {
 
             System.out.println("Escolha o ID do produto que deseja remover do carrinho");
             System.out.println("Para sair digite -1");
-            int idProduto = Integer.parseInt(scanner.nextLine());
+
+            String idProdutoRemover = scanner.nextLine();
+
+            if (!FuncoesUtil.EhNumero(idProdutoRemover)) {
+                System.err.println("Código produto inválido, somente números");
+                return;
+            }
+
+            int idProduto = Integer.parseInt(idProdutoRemover);
 
             if (idProduto == -1) {
                 break;
@@ -402,11 +486,6 @@ public class Main {
                 System.err.println("Erro, não foi possivel adicionar produto ao estoque");
             }
         }
-    }
-
-    private static void adicionarProdutosVenda(ProdutoService produtoService, Scanner scanner, EstoqueService estoqueService, Venda venda) {
-        Produto produto;
-
     }
 
     private static boolean confirmarSenhaCliente(ClienteService clienteService, Cliente cliente, Scanner scanner) {

@@ -181,6 +181,10 @@ public class ClienteService {
 
     public Cliente consultarClientePorCpf(String cpf) {
         CPF cpfUtil = new CPF(cpf);
+        if(!cpfUtil.isCPF()){
+            System.err.println("CPF inválido");
+            return null;
+        }
         return clienteRepository.consultarClientePorCpf(cpfUtil.getCPF(true));
     }
 

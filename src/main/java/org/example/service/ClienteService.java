@@ -180,7 +180,8 @@ public class ClienteService {
     }
 
     public Cliente consultarClientePorCpf(String cpf) {
-        return clienteRepository.consultarClientePorCpf(cpf);
+        CPF cpfUtil = new CPF(cpf);
+        return clienteRepository.consultarClientePorCpf(cpfUtil.getCPF(true));
     }
 
     // Adicionar o método para validar CPF

@@ -22,7 +22,6 @@ public class ClienteRepository {
     public ClienteRepository() {
         utilidades = new RepositoryUtil();
         mapeador = new ObjectMapper();
-        clienteList = new ArrayList<>();
 
         try {
             byte[] dados = utilidades.lerArquivo(CLIENTES_JSON);

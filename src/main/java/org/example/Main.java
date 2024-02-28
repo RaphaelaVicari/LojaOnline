@@ -264,9 +264,10 @@ public class Main {
                     cadastrarNovoProdutoAdm(scanner, produtoService);
                     break;
                 case 2:
-                    while(true) {
+                    while (true) {
                         produtoService.listarTodosProdutos();
                         System.out.println("Digite o ID do produto que deseja remover!");
+                        System.out.println("Para sair digite -1");
 
                         String idProduto = scanner.nextLine();
 
@@ -276,6 +277,10 @@ public class Main {
                         }
 
                         long codigoDoProduto = Long.parseLong(idProduto);
+
+                        if (codigoDoProduto == -1) {
+                            break;
+                        }
 
                         if (produtoService.removerProduto(codigoDoProduto) == null) {
                             System.err.println("Erro ao remover produto!");
@@ -289,6 +294,7 @@ public class Main {
                     while (true) {
                         produtoService.listarTodosProdutos();
                         System.out.println("Digite o ID do produto que deseja alterar a quantidade de estoque!");
+                        System.out.println("Para sair digite -1");
 
                         String idProduto = scanner.nextLine();
                         if (!FuncoesUtil.EhNumero(idProduto)) {
@@ -297,6 +303,9 @@ public class Main {
                         }
                         long codigo = Long.parseLong(idProduto);
 
+                        if (codigo == -1) {
+                            break;
+                        }
 
                         System.out.println("Digite a quantidade do estoque que deseja atribuir ao produto");
                         String quantidadeStr = scanner.nextLine();
@@ -332,13 +341,19 @@ public class Main {
             Produto produto = new Produto();
 
             System.out.println(Constantes.cadastroProdutoCodigo);
+            System.out.println("Para sair digite -1");
             String codigoProduto = scanner.nextLine();
 
             if (!FuncoesUtil.EhNumero(codigoProduto)) {
                 System.err.println("Código inválido, somente números");
                 continue;
             }
-            produto.setCodigoProduto(Long.parseLong(codigoProduto));
+            long codigo = Long.parseLong(codigoProduto);
+
+            if(codigo == -1)
+                return;
+
+            produto.setCodigoProduto(codigo);
 
             System.out.println(Constantes.cadastroProdutoNome);
             produto.setNomeProduto(scanner.nextLine());
